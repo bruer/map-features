@@ -1,56 +1,75 @@
-import './App.css';
+import {  useState } from 'react';
 import { MapContainer, TileLayer, GeoJSON } from 'react-leaflet'
-import { useEffect, useState } from 'react';
-import osmtogeojson from 'osmtogeojson';
-
-const url = "https://www.openstreetmap.org/api/0.6/map?bbox=17.99495,59.34552,17.99735,59.34730"
-const url2 = "https://www.openstreetmap.org/api/0.6/map?bbox=-112.0876,33.3345,-112.0108,33.4280"
+import BoundingBoxInput from './components/BoundingBoxInput';
+import { convertToGeoJSON } from './api';
+import './App.css';
 
 function App() {
-  const [featureCollection, setfeatureCollection] = useState(null)
+  const [features, setFeatures] = useState(null)
   const [isLoading, setIsLoading] = useState(false)
+  const [updateMap, setUpdateMap] = useState(false)
+  const [boundingBox, setBoundingBox] = useState({ left: "", bottom: "", right: "", top: "" })
   const [error, setError] = useState("")
+  const [zoomLevel, setZoomLevel] = useState(3)
 
-  useEffect(() => {
-    fetch(url)
+  function handleChange({ target: { name, value } }) {
+    setBoundingBox({ ...boundingBox, [name]: value })
+  }
+
+  function handleSubmit(event) {
+    event.preventDefault()
+
+    const query = `bbox=${boundingBox.left},${boundingBox.bottom},${boundingBox.right},${boundingBox.top}`
+
+    fetch("https://www.openstreetmap.org/api/0.6/map?" + query)
       .then(response => {
-
-        setIsLoading(true)
-
-        return response.text()
-      })
-      .then(mapDataString => {
-
-        setIsLoading(false)
-
-        if (mapDataString.includes("You requested too many nodes")) {
-          console.log(mapDataString)
-          setError(mapDataString)
+        if (!response.ok) {
+          response.text().then(message => {
+            setError(message)
+          })
         }
+        else {
+          setIsLoading(true)
+          setUpdateMap(true)
+          setZoomLevel(15)
 
-        const mapDataXml = new DOMParser().parseFromString(mapDataString, "application/xml")
-        const featureCollection = osmtogeojson(mapDataXml)
-
-        setfeatureCollection(featureCollection)
-
-      }, error => {
-        console.log(error)
+          return response.text()
+        }
       })
-  }, [])
+      .then(mapData => {
+        if (mapData) {
+          const geoJSON = convertToGeoJSON(mapData)
+
+          setFeatures(geoJSON.features.slice(0, 2000))
+          setError("")
+          setIsLoading(false)
+          setUpdateMap(false)
+        }
+      }, error => { throw Error(error) })
+  }
 
   return (
-    <div>
-      {isLoading && <p>loading GeoJSON</p>}
-      {error && <p>{error}</p>}
+    <div className="app-container">
+      
+      <div className="input-container">
+        <BoundingBoxInput boundingBox={boundingBox} handleChange={handleChange} handleSubmit={handleSubmit} />
+        <div className="error-message">{error && error}</div>
+      </div>
 
-      {featureCollection && <MapContainer center={[59.34573368442725, 17.998488864382967]} zoom={15} scrollWheelZoom={true}>
-        <TileLayer
-          attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-        />
-        <GeoJSON data={featureCollection} />
-      </MapContainer>}
+      {isLoading && <div className="loading-message">loading GeoJSON</div>}
 
+      {!updateMap &&
+        <MapContainer
+          center={[boundingBox.bottom, boundingBox.left]}
+          zoom={zoomLevel}
+          scrollWheelZoom={true}
+        >
+          <TileLayer
+            attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+          />
+          <GeoJSON data={features} />
+        </MapContainer>}
     </div>
   );
 }

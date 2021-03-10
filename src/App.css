@@ -1,3 +1,31 @@
-.leaflet-container {
+.app-container {
+    display: flex;
     height: 100vh;
+}
+
+.leaflet-container {
+    width: 80%;
+}
+
+.input-container {
+    width: 20%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.error-message {
+    height: 10%;
+    margin: 10px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+}
+
+.loading-message {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
