@@ -1,1 +1,2 @@
-# openstreetmap-geojson-features
+# Openstreetmap GeoJSON Features
+Display geographical data (fetched from [Open Street Map API](https://wiki.openstreetmap.org/wiki/API)) for an area on a map, by specifying coordinates for the area of interest.
