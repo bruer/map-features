@@ -4,10 +4,10 @@ import "./BoundingBoxInput.css"
 function BoundingBoxInput({ boundingBox, handleChange, handleSubmit }) {
     return (
         <form onSubmit={handleSubmit}>
-            <label htmlFor="left">Minimun Longitude</label>
+            <label htmlFor="left">Minimum Longitude</label>
             <input type="text" name="left" id="left" placeholder="left side" value={boundingBox.left} onChange={handleChange} />
 
-            <label htmlFor="bottom">Minimun Latitude</label>
+            <label htmlFor="bottom">Minimum Latitude</label>
             <input type="text" name="bottom" id="bottom" placeholder="bottom side" value={boundingBox.bottom} onChange={handleChange} />
 
             <label htmlFor="right">Maximum Longitude</label>

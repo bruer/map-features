@@ -1,7 +1,3 @@
-import osmtogeojson from 'osmtogeojson';
-
-export function convertToGeoJSON(mapData) {
-    const mapDataXML = new DOMParser().parseFromString(mapData, "application/xml")
-
-    return osmtogeojson(mapDataXML)
+export const MESSAGES = {
+    ERROR_NO_OSM_DATA: "unable to find any OSM data for these coordinates"
 }

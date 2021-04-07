@@ -1,16 +1,18 @@
-import {  useState } from 'react';
+import { useState } from 'react';
 import { MapContainer, TileLayer, GeoJSON } from 'react-leaflet'
-import BoundingBoxInput from './components/BoundingBoxInput';
-import { convertToGeoJSON } from './api';
+import BoundingBoxInput from './BoundingBoxInput';
+import { MESSAGES } from '../api';
+import { osm2geojson } from 'osm-and-geojson';
 import './App.css';
 
 function App() {
-  const [features, setFeatures] = useState(null)
+  const [features, setFeatures] = useState([])
   const [isLoading, setIsLoading] = useState(false)
   const [updateMap, setUpdateMap] = useState(false)
+  const [generalError, setGeneralError] = useState("")
+  const [inputError, setInputError] = useState("")
   const [boundingBox, setBoundingBox] = useState({ left: "", bottom: "", right: "", top: "" })
-  const [error, setError] = useState("")
-  const [zoomLevel, setZoomLevel] = useState(3)
+  const [zoomLevel, setZoomLevel] = useState(2)
 
   function handleChange({ target: { name, value } }) {
     setBoundingBox({ ...boundingBox, [name]: value })
@@ -23,42 +25,52 @@ function App() {
 
     fetch("https://www.openstreetmap.org/api/0.6/map?" + query)
       .then(response => {
-        if (!response.ok) {
-          response.text().then(message => {
-            setError(message)
-          })
-        }
-        else {
-          setIsLoading(true)
-          setUpdateMap(true)
-          setZoomLevel(15)
+        if (!response.ok) { throw response }
 
-          return response.text()
-        }
+        setIsLoading(true)
+        // setUpdateMap(true)
+        // setFeatures(null)
+
+
+        return response.text()
       })
       .then(mapData => {
-        if (mapData) {
-          const geoJSON = convertToGeoJSON(mapData)
+        const geoJSON = osm2geojson(mapData).features.slice(0, 500)
 
-          setFeatures(geoJSON.features.slice(0, 2000))
-          setError("")
-          setIsLoading(false)
-          setUpdateMap(false)
+        if (!geoJSON.length) {
+          throw new Error(MESSAGES.ERROR_NO_OSM_DATA)
         }
-      }, error => { throw Error(error) })
+
+        setFeatures(geoJSON)
+        setInputError("")
+        setGeneralError("")
+        setIsLoading(false)
+        // setUpdateMap(false)
+      })
+      .catch(err => {
+        if (err.message) {
+          setGeneralError(err.message)
+          setInputError("")
+          setIsLoading(false)
+        }
+        else {
+          err.text().then(message => { setInputError(message) })
+        }
+      })
   }
 
   return (
     <div className="app-container">
-      
+
       <div className="input-container">
         <BoundingBoxInput boundingBox={boundingBox} handleChange={handleChange} handleSubmit={handleSubmit} />
-        <div className="error-message">{error && error}</div>
+        <div className="error-message">{inputError && inputError}</div>
       </div>
 
-      {isLoading && <div className="loading-message">loading GeoJSON</div>}
+      {isLoading && <div className="info-message">loading GeoJSON</div>}
+      {generalError && <div className="info-message">{generalError}</div>}
 
-      {!updateMap &&
+      {features &&
         <MapContainer
           center={[boundingBox.bottom, boundingBox.left]}
           zoom={zoomLevel}
