@@ -15,17 +15,10 @@
     align-items: center;
 }
 
-.error-message {
+.message {
     height: 10%;
     margin: 10px;
     display: flex;
     align-items: center;
     text-align: center;
-}
-
-.info-message {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
 }

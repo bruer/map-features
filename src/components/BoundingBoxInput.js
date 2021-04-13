@@ -1,24 +1,55 @@
-import React from 'react'
-import "./BoundingBoxInput.css"
+import "./BoundingBoxInput.css";
 
-function BoundingBoxInput({ boundingBox, handleChange, handleSubmit }) {
-    return (
-        <form onSubmit={handleSubmit}>
-            <label htmlFor="left">Minimum Longitude</label>
-            <input type="text" name="left" id="left" placeholder="left side" value={boundingBox.left} onChange={handleChange} />
+function BoundingBoxInput({
+  boundingBox,
+  handleTextInput,
+  handleCheckbox,
+  handleSubmit,
+}) {
+  return (
+    <form onSubmit={handleSubmit}>
+      <label htmlFor="minLng">minimum longitude</label>
+      <input
+        type="text"
+        name="minLng"
+        id="minLng"
+        value={boundingBox.minLng}
+        onChange={handleTextInput}
+      />
 
-            <label htmlFor="bottom">Minimum Latitude</label>
-            <input type="text" name="bottom" id="bottom" placeholder="bottom side" value={boundingBox.bottom} onChange={handleChange} />
+      <label htmlFor="minLat">minimum latitude</label>
+      <input
+        type="text"
+        name="minLat"
+        id="minLat"
+        value={boundingBox.minLat}
+        onChange={handleTextInput}
+      />
 
-            <label htmlFor="right">Maximum Longitude</label>
-            <input type="text" name="right" id="right" placeholder="right side" value={boundingBox.right} onChange={handleChange} />
+      <label htmlFor="maxLng">maximum longitude</label>
+      <input
+        type="text"
+        name="maxLng"
+        id="maxLng"
+        value={boundingBox.maxLng}
+        onChange={handleTextInput}
+      />
 
-            <label htmlFor="top">Maximum Latitude</label>
-            <input type="text" name="top" id="top" placeholder="top side" value={boundingBox.top} onChange={handleChange} />
+      <label htmlFor="maxLat">maximum latitude</label>
+      <input
+        type="text"
+        name="maxLat"
+        id="maxLat"
+        value={boundingBox.maxLat}
+        onChange={handleTextInput}
+      />
 
-            <input type="submit" value="show GeoJSON data" />
-        </form>
-    )
+      <input type="checkbox" id="filter" onChange={handleCheckbox} />
+      <label htmlFor="filter">show all features</label>
+
+      <input type="submit" value="get GeoJSON" />
+    </form>
+  );
 }
 
-export default BoundingBoxInput
+export default BoundingBoxInput;
