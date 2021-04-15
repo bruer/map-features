@@ -1,16 +1,16 @@
 import { MapContainer, TileLayer, GeoJSON, MapConsumer } from "react-leaflet";
 import ReactDOMServer from "react-dom/server";
-import PopupContent from "./PopupContent";
+import PopupContainer from "./PopupContainer";
 
 function Map({ boundingBox, features, isLoading }) {
   function handleFeatures(feature, layer) {
     if (Object.entries(feature.properties).length) {
       const htmlString = ReactDOMServer.renderToString(
-        <PopupContent feature={feature} />
+        <PopupContainer feature={feature} />
       );
       layer.bindPopup(htmlString);
     } else {
-      layer.bindPopup("no data");
+      layer.bindPopup("<code>no data</code>");
     }
   }
 

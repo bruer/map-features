@@ -9,17 +9,11 @@ function App() {
   const [features, setFeatures] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
-  const [boundingBox, setBoundingBox] = useState({
-    minLng: "",
-    minLat: "",
-    maxLng: "",
-    maxLat: "",
-  });
   // const [boundingBox, setBoundingBox] = useState({
-  //   minLng: 17.98644,
-  //   minLat: 59.34364,
-  //   maxLng: 18.00945,
-  //   maxLat: 59.35083,
+  //   minLng: "",
+  //   minLat: "",
+  //   maxLng: "",
+  //   maxLat: "",
   // });
   // const [boundingBox, setBoundingBox] = useState({
   //   minLng: 13.37084,
@@ -27,6 +21,18 @@ function App() {
   //   maxLng: 13.39385,
   //   maxLat: 59.96929,
   // });
+  // const [boundingBox, setBoundingBox] = useState({
+  //   minLng: 17.98644,
+  //   minLat: 59.34364,
+  //   maxLng: 18.00945,
+  //   maxLat: 59.35083,
+  // });
+  const [boundingBox, setBoundingBox] = useState({
+    minLng: -0.09041,
+    minLat: 51.51208,
+    maxLng: -0.08801,
+    maxLat: 51.51425,
+  });
   const [filter, setFilter] = useState(true);
 
   function handleTextInput({ target: { name, value } }) {

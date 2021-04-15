@@ -1,7 +1,67 @@
-.popup-list {
-    padding: 0;
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: start;
 }
 
-.popup-item {
-    list-style: none;
+.title h3 {
+  margin: 0;
+}
+
+ul {
+  padding: 0;
+  list-style: none;
+}
+
+li {
+  margin: 0.5em 0;
+}
+
+.contact fieldset {
+  margin: 0;
+  border: 1px solid #9c27b0;
+  border-radius: 0.5em;
+}
+
+details ul {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+details ul li {
+  margin: 0.25em;
+  padding: 0.5em;
+  border-radius: 0.5em;
+  background: #9c27b07a;
+  text-align: center;
+  overflow: auto;
+}
+
+.leaflet-container .website-link {
+  margin-left: 1em;
+  color: #000;
+  text-decoration: none;
+}
+
+summary {
+  cursor: pointer;
+}
+
+.leaflet-container .website-link,
+summary {
+  padding: 0.5em;
+  border-radius: 0.75em;
+  border: 1px solid #9c27b0;
+  background: #9c27b07a;
+}
+
+.website-link:hover,
+summary:hover {
+  background: #9c27b0;
+  color: #ffffff;
+}
+
+.leaflet-popup-content {
+  min-width: 12rem;
 }
