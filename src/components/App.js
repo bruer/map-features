@@ -1,12 +1,10 @@
 import { useState } from "react";
-import BoundingBoxInput from "./BoundingBoxInput";
+import BoundingBoxInput from "./BoundingBoxInput/BoundingBoxInput";
 import Map from "./Map";
-import { getGeoJson, getOsmData, MESSAGES } from "../api";
-import { osm2geojson } from "osm-and-geojson";
 import "./App.css";
 
 function App() {
-  const [features, setFeatures] = useState(null);
+  const [geoJsonFeatures, setGeoJsonFeatures] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
   // const [boundingBox, setBoundingBox] = useState({
@@ -21,66 +19,33 @@ function App() {
   //   maxLng: 13.39385,
   //   maxLat: 59.96929,
   // });
-  // const [boundingBox, setBoundingBox] = useState({
-  //   minLng: 17.98644,
-  //   minLat: 59.34364,
-  //   maxLng: 18.00945,
-  //   maxLat: 59.35083,
-  // });
   const [boundingBox, setBoundingBox] = useState({
-    minLng: -0.09041,
-    minLat: 51.51208,
-    maxLng: -0.08801,
-    maxLat: 51.51425,
+    minLng: 17.98644,
+    minLat: 59.34364,
+    maxLng: 18.00945,
+    maxLat: 59.35083,
   });
-  const [filter, setFilter] = useState(true);
+  // const [boundingBox, setBoundingBox] = useState({
+  //   minLng: -0.09041,
+  //   minLat: 51.51208,
+  //   maxLng: -0.08801,
+  //   maxLat: 51.51425,
+  // });
 
-  function handleTextInput({ target: { name, value } }) {
-    setBoundingBox({ ...boundingBox, [name]: value });
-  }
-
-  function handleCheckbox({ target }) {
-    setFilter(!target.checked);
-  }
-
-  function handleSubmit(event) {
-    event.preventDefault();
-
-    setFeatures(null);
-    setIsLoading(true);
-    setError("");
-
-    getOsmData(boundingBox)
-      .then((osmData) => {
-        const geoJson = getGeoJson(osmData, filter);
-
-        setFeatures(geoJson);
-        setIsLoading(false);
-        setError("");
-      })
-      .catch(handleError);
-  }
-
-  function handleError(error) {
-    const { name, message } = error;
-
-    if (name) {
-      console.error(error);
-      setError(name === "Error" ? message : "something went wrong");
-    } else {
-      error.text().then((message) => setError(message));
-    }
-    setIsLoading(false);
-  }
+  const handleCoordinatesInput = (coordinates) => setBoundingBox(coordinates);
+  const handleFeatures = (features) => setGeoJsonFeatures(features);
+  const handleLoading = (loading) => setIsLoading(loading);
+  const handleError = (error) => setError(error);
 
   return (
     <div className="app-container">
       <div className="input-container">
         <BoundingBoxInput
           boundingBox={boundingBox}
-          handleTextInput={handleTextInput}
-          handleCheckbox={handleCheckbox}
-          handleSubmit={handleSubmit}
+          onCoordinatesInput={handleCoordinatesInput}
+          onFeaturesChange={handleFeatures}
+          onLoading={handleLoading}
+          onError={handleError}
         />
         <div className="message">
           {error && error}
@@ -89,7 +54,7 @@ function App() {
       </div>
       <Map
         boundingBox={boundingBox}
-        features={features}
+        geoJsonFeatures={geoJsonFeatures}
         isLoading={isLoading}
       />
     </div>

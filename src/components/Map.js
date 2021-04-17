@@ -1,8 +1,8 @@
 import { MapContainer, TileLayer, GeoJSON, MapConsumer } from "react-leaflet";
 import ReactDOMServer from "react-dom/server";
-import PopupContainer from "./PopupContainer";
+import PopupContainer from "./Popup/PopupContainer";
 
-function Map({ boundingBox, features, isLoading }) {
+function Map({ boundingBox, geoJsonFeatures, isLoading }) {
   function handleFeatures(feature, layer) {
     if (Object.entries(feature.properties).length) {
       const htmlString = ReactDOMServer.renderToString(
@@ -16,7 +16,7 @@ function Map({ boundingBox, features, isLoading }) {
 
   return (
     <MapContainer center={[0, 0]} zoom={3} scrollWheelZoom={true}>
-      {features && isLoading && (
+      {geoJsonFeatures && isLoading && (
         <MapConsumer>
           {(map) => {
             const { minLat, minLng, maxLat, maxLng } = boundingBox;
@@ -30,7 +30,7 @@ function Map({ boundingBox, features, isLoading }) {
         </MapConsumer>
       )}
 
-      {features && <GeoJSON data={features} onEachFeature={handleFeatures} />}
+      {geoJsonFeatures && <GeoJSON data={geoJsonFeatures} onEachFeature={handleFeatures} />}
 
       <TileLayer
         attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
