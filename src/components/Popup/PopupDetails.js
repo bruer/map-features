@@ -26,23 +26,31 @@ function PopupDetails({ properties }) {
     "addr:country",
   ];
 
-  return (
-    <details>
-      <summary>Details</summary>
-      <ul>
-        {Object.entries(properties).map(([propertyName, propertyValue]) => {
-          const item = standardProperties.includes(propertyName) ? null : (
-            <li key={nanoid()}>
-              <strong>{propertyName}</strong>
-              <br />
-              {propertyValue}
-            </li>
-          );
+  const newObject = {};
+  Object.entries(properties).forEach(([name, value]) => {
+    if (!standardProperties.includes(name)) {
+      newObject[name] = value;
+    }
+  });
+  const filteredProperties = Object.entries(newObject);
 
-          return item;
-        })}
-      </ul>
-    </details>
+  return (
+    <>
+      {filteredProperties.length ? (
+        <details>
+          <summary>Details</summary>
+          <ul>
+            {filteredProperties.map(([propertyName, propertyValue]) => (
+              <li key={nanoid()}>
+                <strong>{propertyName}</strong>
+                <br />
+                {propertyValue}
+              </li>
+            ))}
+          </ul>
+        </details>
+      ) : null}
+    </>
   );
 }
 

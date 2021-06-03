@@ -4,7 +4,7 @@ import BoundingBoxForm from "./BoundingBoxForm";
 import "./BoundingBoxInput.css";
 
 function BoundingBoxInput({
-  boundingBox,
+  coordinates,
   onCoordinatesInput,
   onFeaturesChange,
   onLoading,
@@ -15,17 +15,17 @@ function BoundingBoxInput({
   function handleInput({ target: { type, name, value, checked } }) {
     type === "checkbox"
       ? setFilter(checked)
-      : onCoordinatesInput({ ...boundingBox, [name]: value });
+      : onCoordinatesInput({ ...coordinates, [name]: value });
   }
 
   function handleSubmit(event) {
     event.preventDefault();
 
+    onError("");
     onFeaturesChange(null);
     onLoading(true);
-    onError("");
 
-    getOsmData(boundingBox)
+    getOsmData(coordinates)
       .then((osmData) => {
         const features = getGeoJsonFeatures(osmData, filterFeatures);
 
@@ -34,6 +34,7 @@ function BoundingBoxInput({
         onError("");
       })
       .catch((error) => {
+        onLoading(false);
         const { name, message } = error;
 
         if (name) {
@@ -42,13 +43,12 @@ function BoundingBoxInput({
         } else {
           error.text().then((message) => onError(message));
         }
-        onLoading(false);
       });
   }
 
   return (
     <BoundingBoxForm
-      boundingBox={boundingBox}
+      coordinates={coordinates}
       handleSubmit={handleSubmit}
       handleInput={handleInput}
     />

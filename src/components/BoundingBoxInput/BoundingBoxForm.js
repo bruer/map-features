@@ -1,14 +1,15 @@
 import React from "react";
 
-function BoundingBoxForm({ boundingBox, handleSubmit, handleInput }) {
+function BoundingBoxForm({ coordinates, handleSubmit, handleInput }) {
   return (
     <form onSubmit={handleSubmit}>
       <label>
         minimum longitude
         <input
-          type="text"
+          type="number"
+          step="0.00001"
           name="minLng"
-          value={boundingBox.minLng}
+          value={coordinates.minLng}
           onChange={handleInput}
         />
       </label>
@@ -16,9 +17,10 @@ function BoundingBoxForm({ boundingBox, handleSubmit, handleInput }) {
       <label>
         minimum latitude
         <input
-          type="text"
+          type="number"
+          step="0.00001"
           name="minLat"
-          value={boundingBox.minLat}
+          value={coordinates.minLat}
           onChange={handleInput}
         />
       </label>
@@ -26,9 +28,10 @@ function BoundingBoxForm({ boundingBox, handleSubmit, handleInput }) {
       <label>
         maximum longitude
         <input
-          type="text"
+          type="number"
+          step="0.00001"
           name="maxLng"
-          value={boundingBox.maxLng}
+          value={coordinates.maxLng}
           onChange={handleInput}
         />
       </label>
@@ -36,9 +39,10 @@ function BoundingBoxForm({ boundingBox, handleSubmit, handleInput }) {
       <label>
         maximum latitude
         <input
-          type="text"
+          type="number"
+          step="0.00001"
           name="maxLat"
-          value={boundingBox.maxLat}
+          value={coordinates.maxLat}
           onChange={handleInput}
         />
       </label>

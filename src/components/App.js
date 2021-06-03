@@ -1,11 +1,12 @@
 import { useState } from "react";
 import BoundingBoxInput from "./BoundingBoxInput/BoundingBoxInput";
-import Map from "./Map";
+import Map from "./Map/Map";
 import "./App.css";
 
 function App() {
   const [geoJsonFeatures, setGeoJsonFeatures] = useState(null);
-  const [isLoading, setIsLoading] = useState(false);
+  const [boundingBox, setBoundingBox] = useState(null);
+  const [isLoading, setLoading] = useState(false);
   const [error, setError] = useState("");
   // const [boundingBox, setBoundingBox] = useState({
   //   minLng: "",
@@ -13,35 +14,38 @@ function App() {
   //   maxLng: "",
   //   maxLat: "",
   // });
-  // const [boundingBox, setBoundingBox] = useState({
+  // const [coordinates, setCoordinates] = useState({
   //   minLng: 13.37084,
   //   minLat: 59.96254,
   //   maxLng: 13.39385,
   //   maxLat: 59.96929,
   // });
-  const [boundingBox, setBoundingBox] = useState({
+  const [coordinates, setCoordinates] = useState({
     minLng: 17.98644,
     minLat: 59.34364,
     maxLng: 18.00945,
     maxLat: 59.35083,
   });
-  // const [boundingBox, setBoundingBox] = useState({
+  // const [coordinates, setCoordinates] = useState({
   //   minLng: -0.09041,
   //   minLat: 51.51208,
   //   maxLng: -0.08801,
   //   maxLat: 51.51425,
   // });
 
-  const handleCoordinatesInput = (coordinates) => setBoundingBox(coordinates);
-  const handleFeatures = (features) => setGeoJsonFeatures(features);
-  const handleLoading = (loading) => setIsLoading(loading);
+  const handleCoordinatesInput = (coordinates) => setCoordinates(coordinates);
+  const handleFeatures = (features) => {
+    setGeoJsonFeatures(features);
+    setBoundingBox(coordinates);
+  };
+  const handleLoading = (loading) => setLoading(loading);
   const handleError = (error) => setError(error);
 
   return (
     <div className="app-container">
       <div className="input-container">
         <BoundingBoxInput
-          boundingBox={boundingBox}
+          coordinates={coordinates}
           onCoordinatesInput={handleCoordinatesInput}
           onFeaturesChange={handleFeatures}
           onLoading={handleLoading}
@@ -54,8 +58,7 @@ function App() {
       </div>
       <Map
         boundingBox={boundingBox}
-        geoJsonFeatures={geoJsonFeatures}
-        isLoading={isLoading}
+        features={geoJsonFeatures}
       />
     </div>
   );
