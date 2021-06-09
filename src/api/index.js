@@ -27,3 +27,37 @@ export function getGeoJsonFeatures(osmData, filterFeatures) {
   }
   return geoJson;
 }
+
+export function filterProperties(properties) {
+  const standardProperties = [
+    "name",
+    "website",
+    "opening_hours",
+    "phone",
+    "email",
+    "amenity",
+    "tourism",
+    "shop",
+    "railway",
+    "station",
+    "leisure",
+    "highway",
+    "office",
+    "place",
+    "historic",
+    "addr:housename",
+    "addr:street",
+    "addr:housenumber",
+    "addr:city",
+    "addr:postcode",
+    "addr:country",
+  ];
+  const newObject = {};
+
+  Object.entries(properties).forEach(([name, value]) => {
+    if (!standardProperties.includes(name)) {
+      newObject[name] = value;
+    }
+  });
+  return Object.entries(newObject);
+}

@@ -23,13 +23,13 @@ li {
   border-radius: 0.5em;
 }
 
-details ul {
+.details-list {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
 }
 
-details ul li {
+.details-list li {
   margin: 0.25em;
   padding: 0.5em;
   border-radius: 0.5em;

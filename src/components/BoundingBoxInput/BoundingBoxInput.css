@@ -1,18 +1,26 @@
 form {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  padding: 1em;
 }
 
-label {
-  width: min-content;
-  margin-bottom: 0.5em;
-}
-
-label:last-of-type {
-  width: 100%;
-  margin: 1em 0 1.5em;
+.top,
+.bottom {
   display: flex;
-  justify-content: space-evenly;
-  align-items: flex-end;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 100%;
+}
+
+.top {
+  margin-bottom: 1em;
+}
+
+.top > *, .bottom > * {
+  margin: 0 0.5em;
+}
+
+.top label {
+  display: flex;
+  flex-direction: column;
 }

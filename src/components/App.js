@@ -8,7 +8,7 @@ function App() {
   const [boundingBox, setBoundingBox] = useState(null);
   const [isLoading, setLoading] = useState(false);
   const [error, setError] = useState("");
-  // const [boundingBox, setBoundingBox] = useState({
+  // const [coordinates, setCoordinates] = useState({
   //   minLng: "",
   //   minLat: "",
   //   maxLng: "",
@@ -51,15 +51,14 @@ function App() {
           onLoading={handleLoading}
           onError={handleError}
         />
+      </div>
+      <Map boundingBox={boundingBox} features={geoJsonFeatures} />
+      {(error || isLoading) && (
         <div className="message">
-          {error && error}
+          {error}
           {isLoading && "loading GeoJSON"}
         </div>
-      </div>
-      <Map
-        boundingBox={boundingBox}
-        features={geoJsonFeatures}
-      />
+      )}
     </div>
   );
 }
