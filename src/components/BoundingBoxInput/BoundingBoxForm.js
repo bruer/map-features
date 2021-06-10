@@ -1,12 +1,18 @@
 import React from "react";
 
-function BoundingBoxForm({ coordinates, handleSubmit, handleInput }) {
+function BoundingBoxForm({
+  coordinates,
+  handleSubmit,
+  handleInput,
+  filterChecked,
+}) {
   return (
     <form onSubmit={handleSubmit}>
       <div className="top">
         <label>
-          minimum longitude
+          <span>minimum longitude</span>
           <input
+            className="coordinate-input"
             type="number"
             step="0.00001"
             name="minLng"
@@ -15,8 +21,9 @@ function BoundingBoxForm({ coordinates, handleSubmit, handleInput }) {
           />
         </label>
         <label>
-          minimum latitude
+          <span>minimum latitude</span>
           <input
+            className="coordinate-input"
             type="number"
             step="0.00001"
             name="minLat"
@@ -25,8 +32,9 @@ function BoundingBoxForm({ coordinates, handleSubmit, handleInput }) {
           />
         </label>
         <label>
-          maximum longitude
+          <span>maximum longitude</span>
           <input
+            className="coordinate-input"
             type="number"
             step="0.00001"
             name="maxLng"
@@ -34,10 +42,10 @@ function BoundingBoxForm({ coordinates, handleSubmit, handleInput }) {
             onChange={handleInput}
           />
         </label>
-
         <label>
-          maximum latitude
+          <span>maximum latitude</span>
           <input
+            className="coordinate-input"
             type="number"
             step="0.00001"
             name="maxLat"
@@ -47,12 +55,15 @@ function BoundingBoxForm({ coordinates, handleSubmit, handleInput }) {
         </label>
       </div>
       <div className="bottom">
-        <label>
+        <label className={`filter-input ${filterChecked ? "fill" : ""}`}>
           filter features
           <input type="checkbox" defaultChecked onChange={handleInput} />
         </label>
-
-        <input type="submit" value="get GeoJSON" />
+        <input
+          className="submit-button"
+          type="submit"
+          value="Show Map Features"
+        />
       </div>
     </form>
   );

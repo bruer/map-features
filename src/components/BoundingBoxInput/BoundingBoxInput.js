@@ -51,6 +51,7 @@ function BoundingBoxInput({
       coordinates={coordinates}
       handleSubmit={handleSubmit}
       handleInput={handleInput}
+      filterChecked={filterFeatures}
     />
   );
 }

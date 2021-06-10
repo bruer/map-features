@@ -54,9 +54,9 @@ function App() {
       </div>
       <Map boundingBox={boundingBox} features={geoJsonFeatures} />
       {(error || isLoading) && (
-        <div className="message">
+        <div className={`message ${error ? "error" : "loading"}`}>
           {error}
-          {isLoading && "loading GeoJSON"}
+          {isLoading && "Loading Map Features"}
         </div>
       )}
     </div>

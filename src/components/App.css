@@ -20,12 +20,23 @@
 
 .message {
   width: fit-content;
+  max-width: 15em;
   position: absolute;
   left: 0;
   right: 0;
   margin: auto;
   padding: 1em;
   top: 45%;
-  background: #fff;
   text-align: center;
+  border-radius: 6px;
+  font-size: 1.5em;
+}
+
+.error {
+  background: #ff1100b5;
+  color: #fff;
+}
+
+.loading {
+  background: #ffeb3bbd;
 }

@@ -1,23 +1,23 @@
-import React, { useState } from "react";
+// import React, { useState } from "react";
 import { nanoid } from "nanoid";
 // import { Button, Modal, ModalHeader } from "reactstrap";
 import { filterProperties } from "../../api";
-import {
-  Button,
-  Dialog,
-  DialogContent,
-  DialogTitle,
-  Typography,
-} from "@material-ui/core";
+// import {
+//   Button,
+//   Dialog,
+//   DialogContent,
+//   DialogTitle,
+//   Typography,
+// } from "@material-ui/core";
 
 function PopupDetails({ properties }) {
   const filteredProperties = filterProperties(properties);
 
-  const [dialogState, setDialogState] = useState(false);
-  const toggleDialogState = () => {
-    setDialogState(!dialogState);
-    console.log(dialogState);
-  };
+  // const [dialogState, setDialogState] = useState(false);
+  // const toggleDialogState = () => {
+  //   setDialogState(!dialogState);
+  //   console.log(dialogState);
+  // };
 
   return (
     <>
@@ -56,7 +56,7 @@ function PopupDetails({ properties }) {
 
           <details>
             <summary>Details</summary>
-            <ul>
+            <ul className="details-list">
               {filteredProperties.map(([propertyName, propertyValue]) => (
                 <li key={nanoid()}>
                   <strong>{propertyName}</strong>
