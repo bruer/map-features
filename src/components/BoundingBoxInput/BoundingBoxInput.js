@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { getGeoJsonFeatures, getOsmData } from "../../api";
+import { getGeoJsonFeatures, getOsmData, selectLocation } from "../../api";
 import BoundingBoxForm from "./BoundingBoxForm";
 import "./BoundingBoxInput.css";
 
@@ -10,12 +10,18 @@ function BoundingBoxInput({
   onLoading,
   onError,
 }) {
-  const [filterFeatures, setFilter] = useState(true);
+  const [filterFeatures, setFilter] = useState(false);
 
   function handleInput({ target: { type, name, value, checked } }) {
-    type === "checkbox"
-      ? setFilter(checked)
-      : onCoordinatesInput({ ...coordinates, [name]: value });
+    if (type.includes("checkbox")) {
+      setFilter(checked);
+    }
+    if (type.includes("number")) {
+      onCoordinatesInput({ ...coordinates, [name]: value });
+    }
+    if (type.includes("select")) {
+      onCoordinatesInput(selectLocation(value));
+    }
   }
 
   function handleSubmit(event) {

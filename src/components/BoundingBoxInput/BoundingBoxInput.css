@@ -1,44 +1,46 @@
 form {
   display: flex;
   flex-direction: column;
+  align-items: center ;
   padding: 1em;
 }
 
-.top,
-.bottom {
+.coordinate-input,
+.additional-input {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   width: 100%;
 }
 
-.top {
-  margin-bottom: 1em;
-}
-
-.top label {
+.coordinate-input label {
   display: flex;
   flex-direction: column;
   margin: 0.25em 0.5em;
 }
 
-.top label span {
+.coordinate-input label span {
   font-size: 0.75em;
   margin-left: 1em;
 }
 
-.coordinate-input {
+.coordinate-input input,
+.additional-input *,
+.submit-button {
+  border-radius: 25px;
+  transition: 500ms;
+}
+
+.coordinate-input input {
   -moz-appearance: textfield;
   padding: 0.5em 0;
-  border-radius: 16px;
   border: none;
   background: #ff7e66;
   text-align: center;
   font-size: 1em;
-  transition: 500ms;
 }
 
-.coordinate-input:focus {
+.coordinate-input input:focus {
   background: #f44336;
   color: #fff;
 }
@@ -49,40 +51,37 @@ input::-webkit-inner-spin-button {
   margin: 0;
 }
 
-.bottom {
-  align-items: center;
-}
-
-.bottom > * {
-  margin: 0.5em;
-}
-
-.filter-input {
+.filter-input,
+.location-input {
   display: flex;
-  align-items: center;
-  padding: 0.5em;
-  border-radius: 16px;
-  border: #ff7e66 solid 2px;
-  font-size: 0.75em;
-  cursor: pointer;
-  transition: 500ms;
+  width: 10rem;
+  margin: .5rem;
 }
-.fill {
-  background: #f44336;
-  border-color: #f44336;
-  color: #fff;
+
+.filter-input label,
+.location-input > * {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 100%;
+  padding: 0.25rem;
+  border: 2px solid #f44336;
+  cursor: pointer;
+}
+
+.location-input select {
+  font-family: inherit;
 }
 
 .submit-button {
-  /* background: #f44336; */
   background: #009688a8;
-  /* color: #fff; */
   border: none;
-  padding: 0.75em;
-  border-radius: 16px;
+  padding: 1rem;
+  margin-top: .5rem;
+  font-size: 1rem;
+  width: 100%;
+  max-width: 25rem;
   cursor: pointer;
-  transition: 500ms;
-  /* transition: 1s; */
 }
 
 .submit-button:hover {

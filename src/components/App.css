@@ -11,7 +11,6 @@
 }
 
 .input-container {
-  /* width: 20%; */
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -25,15 +24,14 @@
   left: 0;
   right: 0;
   margin: auto;
+  bottom: 25%;
   padding: 1em;
-  top: 45%;
-  text-align: center;
   border-radius: 6px;
-  font-size: 1.5em;
+  text-align: center;
 }
 
 .error {
-  background: #ff1100b5;
+  background: #ff1100;
   color: #fff;
 }
 

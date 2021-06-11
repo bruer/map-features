@@ -7,31 +7,15 @@ function App() {
   const [geoJsonFeatures, setGeoJsonFeatures] = useState(null);
   const [boundingBox, setBoundingBox] = useState(null);
   const [isLoading, setLoading] = useState(false);
-  const [error, setError] = useState("");
-  // const [coordinates, setCoordinates] = useState({
-  //   minLng: "",
-  //   minLat: "",
-  //   maxLng: "",
-  //   maxLat: "",
-  // });
-  // const [coordinates, setCoordinates] = useState({
-  //   minLng: 13.37084,
-  //   minLat: 59.96254,
-  //   maxLng: 13.39385,
-  //   maxLat: 59.96929,
-  // });
+  const [error, setError] = useState(
+    "The parameter bbox is required, and must be of the form min_lon,min_lat,max_lon,max_lat."
+  );
   const [coordinates, setCoordinates] = useState({
-    minLng: 17.98644,
-    minLat: 59.34364,
-    maxLng: 18.00945,
-    maxLat: 59.35083,
+    minLng: "",
+    minLat: "",
+    maxLng: "",
+    maxLat: "",
   });
-  // const [coordinates, setCoordinates] = useState({
-  //   minLng: -0.09041,
-  //   minLat: 51.51208,
-  //   maxLng: -0.08801,
-  //   maxLat: 51.51425,
-  // });
 
   const handleCoordinatesInput = (coordinates) => setCoordinates(coordinates);
   const handleFeatures = (features) => {
@@ -53,12 +37,15 @@ function App() {
         />
       </div>
       <Map boundingBox={boundingBox} features={geoJsonFeatures} />
-      {(error || isLoading) && (
+
+      {error && <div className={`message error`}>{error}</div>}
+
+      {/* {(error || isLoading) && (
         <div className={`message ${error ? "error" : "loading"}`}>
           {error}
           {isLoading && "Loading Map Features"}
         </div>
-      )}
+      )} */}
     </div>
   );
 }

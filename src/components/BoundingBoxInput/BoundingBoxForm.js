@@ -1,4 +1,7 @@
 import React from "react";
+import CoordinateInput from "./CoordinateInput";
+import FilterInput from "./FilterInput";
+import LocationInput from "./LocationInput";
 
 function BoundingBoxForm({
   coordinates,
@@ -8,63 +11,16 @@ function BoundingBoxForm({
 }) {
   return (
     <form onSubmit={handleSubmit}>
-      <div className="top">
-        <label>
-          <span>minimum longitude</span>
-          <input
-            className="coordinate-input"
-            type="number"
-            step="0.00001"
-            name="minLng"
-            value={coordinates.minLng}
-            onChange={handleInput}
-          />
-        </label>
-        <label>
-          <span>minimum latitude</span>
-          <input
-            className="coordinate-input"
-            type="number"
-            step="0.00001"
-            name="minLat"
-            value={coordinates.minLat}
-            onChange={handleInput}
-          />
-        </label>
-        <label>
-          <span>maximum longitude</span>
-          <input
-            className="coordinate-input"
-            type="number"
-            step="0.00001"
-            name="maxLng"
-            value={coordinates.maxLng}
-            onChange={handleInput}
-          />
-        </label>
-        <label>
-          <span>maximum latitude</span>
-          <input
-            className="coordinate-input"
-            type="number"
-            step="0.00001"
-            name="maxLat"
-            value={coordinates.maxLat}
-            onChange={handleInput}
-          />
-        </label>
+      <CoordinateInput handleInput={handleInput} coordinates={coordinates} />
+      <div className="additional-input">
+        <LocationInput handleInput={handleInput} />
+        <FilterInput handleInput={handleInput} filterChecked={filterChecked} />
       </div>
-      <div className="bottom">
-        <label className={`filter-input ${filterChecked ? "fill" : ""}`}>
-          filter features
-          <input type="checkbox" defaultChecked onChange={handleInput} />
-        </label>
-        <input
-          className="submit-button"
-          type="submit"
-          value="Show Map Features"
-        />
-      </div>
+      <input
+        className="submit-button"
+        type="submit"
+        value="Show Map Features"
+      />
     </form>
   );
 }
