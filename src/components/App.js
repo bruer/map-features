@@ -7,9 +7,7 @@ function App() {
   const [geoJsonFeatures, setGeoJsonFeatures] = useState(null);
   const [boundingBox, setBoundingBox] = useState(null);
   const [isLoading, setLoading] = useState(false);
-  const [error, setError] = useState(
-    "The parameter bbox is required, and must be of the form min_lon,min_lat,max_lon,max_lat."
-  );
+  const [error, setError] = useState("");
   const [coordinates, setCoordinates] = useState({
     minLng: "",
     minLat: "",
@@ -17,35 +15,34 @@ function App() {
     maxLat: "",
   });
 
-  const handleCoordinatesInput = (coordinates) => setCoordinates(coordinates);
-  const handleFeatures = (features) => {
+  const handleSubmit = (features) => {
     setGeoJsonFeatures(features);
     setBoundingBox(coordinates);
   };
-  const handleLoading = (loading) => setLoading(loading);
-  const handleError = (error) => setError(error);
 
   return (
     <div className="app-container">
-      <div className="input-container">
+      <div className="input-container" onClick={() => setError("")}>
         <BoundingBoxInput
           coordinates={coordinates}
-          onCoordinatesInput={handleCoordinatesInput}
-          onFeaturesChange={handleFeatures}
-          onLoading={handleLoading}
-          onError={handleError}
+          setCoordinates={setCoordinates}
+          setLoading={setLoading}
+          setError={setError}
+          handleSubmit={handleSubmit}
         />
       </div>
-      <Map boundingBox={boundingBox} features={geoJsonFeatures} />
-
-      {error && <div className={`message error`}>{error}</div>}
-
-      {/* {(error || isLoading) && (
-        <div className={`message ${error ? "error" : "loading"}`}>
-          {error}
-          {isLoading && "Loading Map Features"}
+      <Map
+        boundingBox={boundingBox}
+        features={geoJsonFeatures}
+        setError={setError}
+      />
+      {error && (
+        <div className={"message error"}>
+          <button onClick={() => setError("")}>X</button>
+          <p>{error}</p>
         </div>
-      )} */}
+      )}
+      {isLoading && <div className="message loading">Loading Map Features</div>}
     </div>
   );
 }

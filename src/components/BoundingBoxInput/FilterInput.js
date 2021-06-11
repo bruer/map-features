@@ -1,15 +1,11 @@
 import React from "react";
 
-function FilterInput({ handleInput, filterChecked }) {
-  const fill = { background: "#f44336", borderColor: "#f44336", color: "#fff" };
-
+function FilterInput({ input, filterChecked }) {
   return (
-    <div className="filter-input">
-      <label style={filterChecked ? fill : null}>
-        Filter Features
-        <input type="checkbox" defaultChecked={false} onChange={handleInput} />
-      </label>
-    </div>
+    <label className={`filter-input ${filterChecked ? "fill" : ""}`}>
+      Filter Features
+      <input type="checkbox" defaultChecked={false} onChange={input} />
+    </label>
   );
 }
 

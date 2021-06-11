@@ -1,9 +1,15 @@
-import { MapContainer, TileLayer } from "react-leaflet";
+import { MapConsumer, MapContainer, TileLayer } from "react-leaflet";
 import MapFeatures from "./MapFeatures";
 
-function Map({ boundingBox, features }) {
+function Map({ boundingBox, features, setError }) {
   return (
     <MapContainer center={[0, 0]} zoom={3} scrollWheelZoom={true}>
+      <MapConsumer>
+        {(map) => {
+          map.on("click", () => setError(""));
+          return null;
+        }}
+      </MapConsumer>
       {features && (
         <MapFeatures boundingBox={boundingBox} features={features} />
       )}

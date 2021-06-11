@@ -24,10 +24,14 @@
   left: 0;
   right: 0;
   margin: auto;
-  bottom: 25%;
+  bottom: 45%;
   padding: 1em;
   border-radius: 6px;
   text-align: center;
+}
+
+.loading {
+  background: #ffeb3b;
 }
 
 .error {
@@ -35,6 +39,19 @@
   color: #fff;
 }
 
-.loading {
-  background: #ffeb3bbd;
+.error button {
+  cursor: pointer;
+  background: none;
+  border: none;
+  position: absolute;
+  outline-color: #000;
+  right: 5px;
+  top: 5px;
+  padding: 5px;
+  border-radius: 30%;
+  transition: 500ms;
+}
+
+.error button:hover {
+  color: #fff;
 }

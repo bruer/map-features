@@ -5,59 +5,62 @@ import "./BoundingBoxInput.css";
 
 function BoundingBoxInput({
   coordinates,
-  onCoordinatesInput,
-  onFeaturesChange,
-  onLoading,
-  onError,
+  setCoordinates,
+  setLoading,
+  setError,
+  handleSubmit,
 }) {
   const [filterFeatures, setFilter] = useState(false);
+  const [location, setLocation] = useState("");
 
   function handleInput({ target: { type, name, value, checked } }) {
     if (type.includes("checkbox")) {
       setFilter(checked);
     }
     if (type.includes("number")) {
-      onCoordinatesInput({ ...coordinates, [name]: value });
+      setCoordinates({ ...coordinates, [name]: value });
     }
     if (type.includes("select")) {
-      onCoordinatesInput(selectLocation(value));
+      setLocation(value)
+      setCoordinates(selectLocation(value));
     }
   }
 
-  function handleSubmit(event) {
+  function submit(event) {
     event.preventDefault();
 
-    onError("");
-    onFeaturesChange(null);
-    onLoading(true);
+    setLoading(true);
+    setError("");
+    handleSubmit(null);
 
     getOsmData(coordinates)
       .then((osmData) => {
         const features = getGeoJsonFeatures(osmData, filterFeatures);
 
-        onFeaturesChange(features);
-        onLoading(false);
-        onError("");
+        setLoading(false);
+        setError("");
+        handleSubmit(features);
       })
       .catch((error) => {
-        onLoading(false);
+        setLoading(false);
         const { name, message } = error;
 
         if (name) {
           console.error(error);
-          onError(name === "Error" ? message : "something went wrong");
+          setError(name === "Error" ? message : "something went wrong");
         } else {
-          error.text().then((message) => onError(message));
+          error.text().then((message) => setError(message));
         }
       });
   }
 
   return (
     <BoundingBoxForm
+      input={handleInput}
+      submit={submit}
       coordinates={coordinates}
-      handleSubmit={handleSubmit}
-      handleInput={handleInput}
       filterChecked={filterFeatures}
+      location={location}
     />
   );
 }

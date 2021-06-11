@@ -1,28 +1,16 @@
-import React, { useState } from "react";
+import React from "react";
 
-function LocationInput({ handleInput }) {
-  const [dropdown, setDropdown] = useState(false);
-
+function LocationInput({ input, location }) {
   return (
-    <div className="location-input">
-      <label
-        htmlFor="locations"
-        style={{ display: `${dropdown ? "none" : ""}` }}
-        onClick={() => setDropdown(true)}
-      >
-        Choose a location
-      </label>
-      <select
-        id="locations"
-        onChange={handleInput}
-        style={dropdown ? { dispaly: "block" } : { display: "none" }}
-      >
+    <label className={`location-input ${location ? "fill" : ""}`}>
+      Choose a Location
+      <select onChange={input}>
         <option value="">-</option>
         <option value="huvudsta">Huvudsta</option>
         <option value="london">London</option>
         <option value="loggolvberg">Loggolvberg</option>
       </select>
-    </div>
+    </label>
   );
 }
 

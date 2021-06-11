@@ -1,46 +1,49 @@
 import React from "react";
 
-function CoordinateInput({ coordinates, handleInput }) {
+function CoordinateInput({
+  input,
+  coordinates: { minLng, minLat, maxLng, maxLat },
+}) {
   return (
     <div className="coordinate-input">
       <label>
         <span>Minimum Longitude</span>
         <input
           type="number"
-          step="0.00001"
           name="minLng"
-          value={coordinates.minLng}
-          onChange={handleInput}
+          value={minLng}
+          onChange={input}
+          className={minLng ? "fill" : ""}
         />
       </label>
       <label>
         <span>Minimum Latitude</span>
         <input
           type="number"
-          step="0.00001"
           name="minLat"
-          value={coordinates.minLat}
-          onChange={handleInput}
+          value={minLat}
+          onChange={input}
+          className={minLat ? "fill" : ""}
         />
       </label>
       <label>
         <span>Maximum Longitude</span>
         <input
           type="number"
-          step="0.00001"
           name="maxLng"
-          value={coordinates.maxLng}
-          onChange={handleInput}
+          value={maxLng}
+          onChange={input}
+          className={maxLng ? "fill" : ""}
         />
       </label>
       <label>
         <span>Maximum Latitude</span>
         <input
           type="number"
-          step="0.00001"
           name="maxLat"
-          value={coordinates.maxLat}
-          onChange={handleInput}
+          value={maxLat}
+          onChange={input}
+          className={maxLat ? "fill" : ""}
         />
       </label>
     </div>

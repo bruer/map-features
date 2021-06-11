@@ -5,16 +5,17 @@ import LocationInput from "./LocationInput";
 
 function BoundingBoxForm({
   coordinates,
-  handleSubmit,
-  handleInput,
+  submit,
+  input,
   filterChecked,
+  location,
 }) {
   return (
-    <form onSubmit={handleSubmit}>
-      <CoordinateInput handleInput={handleInput} coordinates={coordinates} />
+    <form onSubmit={submit}>
+      <CoordinateInput input={input} coordinates={coordinates} />
       <div className="additional-input">
-        <LocationInput handleInput={handleInput} />
-        <FilterInput handleInput={handleInput} filterChecked={filterChecked} />
+        <LocationInput input={input} location={location} />
+        <FilterInput input={input} filterChecked={filterChecked} />
       </div>
       <input
         className="submit-button"
