@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { getGeoJsonFeatures, getOsmData, selectLocation } from "../../api";
 import BoundingBoxForm from "./BoundingBoxForm";
-import "./BoundingBoxInput.css";
+
 
 function BoundingBoxInput({
   coordinates,

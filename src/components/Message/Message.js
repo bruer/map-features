@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useRef } from "react";
-import "./Message.css";
+
 
 function Message({ isLoading, error, setError }) {
   const errorMessage = useRef(null);

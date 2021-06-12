@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { nanoid } from "nanoid";
 // import { Button, Modal, ModalHeader } from "reactstrap";
-import { filterProperties } from "../../api";
+import { filterProperties } from "../../../api";
 import {
   Button,
   Dialog,

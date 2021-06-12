@@ -1,5 +1,5 @@
 import { nanoid } from "nanoid";
-import { filterProperties } from "../../api";
+import { filterProperties } from "../../../api";
 
 function PopupDetails({ properties }) {
   const filteredProperties = filterProperties(properties);

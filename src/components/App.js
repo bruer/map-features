@@ -1,8 +1,12 @@
+import "./App.css";
+import "./BoundingBoxInput/BoundingBoxInput.css";
+import "./Message/Message.css";
+import "./Map/Popup/Popup.css";
+
 import { useState } from "react";
 import BoundingBoxInput from "./BoundingBoxInput/BoundingBoxInput";
 import Map from "./Map/Map";
 import Message from "./Message/Message";
-import "./App.css";
 
 function App() {
   const [geoJsonFeatures, setGeoJsonFeatures] = useState(null);
@@ -23,15 +27,13 @@ function App() {
 
   return (
     <div className="app-container">
-      <div className="input-container" onClick={() => setError("")}>
-        <BoundingBoxInput
-          coordinates={coordinates}
-          setCoordinates={setCoordinates}
-          setLoading={setLoading}
-          setError={setError}
-          handleSubmit={handleSubmit}
-        />
-      </div>
+      <BoundingBoxInput
+        coordinates={coordinates}
+        setCoordinates={setCoordinates}
+        setLoading={setLoading}
+        setError={setError}
+        handleSubmit={handleSubmit}
+      />
       <Map
         boundingBox={boundingBox}
         features={geoJsonFeatures}
