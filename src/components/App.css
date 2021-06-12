@@ -2,6 +2,7 @@
   display: flex;
   flex-direction: column;
   height: 100vh;
+  background: #fff;
 }
 
 .leaflet-container {
@@ -15,43 +16,4 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-}
-
-.message {
-  width: fit-content;
-  max-width: 15em;
-  position: absolute;
-  left: 0;
-  right: 0;
-  margin: auto;
-  bottom: 45%;
-  padding: 1em;
-  border-radius: 6px;
-  text-align: center;
-}
-
-.loading {
-  background: #ffeb3b;
-}
-
-.error {
-  background: #ff1100;
-  color: #fff;
-}
-
-.error button {
-  cursor: pointer;
-  background: none;
-  border: none;
-  position: absolute;
-  outline-color: #000;
-  right: 5px;
-  top: 5px;
-  padding: 5px;
-  border-radius: 30%;
-  transition: 500ms;
-}
-
-.error button:hover {
-  color: #fff;
 }

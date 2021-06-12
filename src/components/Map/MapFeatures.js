@@ -3,6 +3,7 @@ import { FeatureGroup, useMap, Popup } from "react-leaflet";
 import PopupHeader from "../Popup/PopupHeader";
 import PopupContact from "../Popup/PopupContact";
 import PopupDetails from "../Popup/PopupDetails";
+import PopupDetailsMUI from "../Popup/PopupDetailsMUI";
 import GeometryLayer from "./GeometryLayer";
 import { nanoid } from "nanoid";
 import "../Popup/PopupContent.css";
@@ -30,6 +31,7 @@ function MapFeatures({ boundingBox, features }) {
                     <PopupHeader properties={properties} />
                     <PopupContact properties={properties} />
                     <PopupDetails properties={properties} />
+                    <PopupDetailsMUI properties={properties} />
                   </Popup>
                 )}
                 <GeometryLayer geometry={geometry} />

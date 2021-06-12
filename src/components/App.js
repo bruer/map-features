@@ -1,6 +1,7 @@
 import { useState } from "react";
 import BoundingBoxInput from "./BoundingBoxInput/BoundingBoxInput";
 import Map from "./Map/Map";
+import Message from "./Message/Message";
 import "./App.css";
 
 function App() {
@@ -36,13 +37,7 @@ function App() {
         features={geoJsonFeatures}
         setError={setError}
       />
-      {error && (
-        <div className={"message error"}>
-          <button onClick={() => setError("")}>X</button>
-          <p>{error}</p>
-        </div>
-      )}
-      {isLoading && <div className="message loading">Loading Map Features</div>}
+      <Message isLoading={isLoading} error={error} setError={setError} />
     </div>
   );
 }

@@ -1,5 +1,9 @@
 import { osm2geojson } from "osm-and-geojson";
 
+const MESSAGE = {
+  ERROR_NO_OSM_DATA: "unable to find any OSM data for these coordinates",
+};
+
 export async function getOsmData({ minLng, minLat, maxLng, maxLat }) {
   const response = await fetch(
     `https://www.openstreetmap.org/api/0.6/map?bbox=${minLng},${minLat},${maxLng},${maxLat}`
@@ -91,7 +95,3 @@ export function selectLocation(location) {
       };
   }
 }
-
-const MESSAGE = {
-  ERROR_NO_OSM_DATA: "unable to find any OSM data for these coordinates",
-};
