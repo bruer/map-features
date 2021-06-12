@@ -2,7 +2,6 @@ import { useState } from "react";
 import { getGeoJsonFeatures, getOsmData, selectLocation } from "../../api";
 import BoundingBoxForm from "./BoundingBoxForm";
 
-
 function BoundingBoxInput({
   coordinates,
   setCoordinates,
@@ -21,7 +20,7 @@ function BoundingBoxInput({
       setCoordinates({ ...coordinates, [name]: value });
     }
     if (type.includes("select")) {
-      setLocation(value)
+      setLocation(value);
       setCoordinates(selectLocation(value));
     }
   }

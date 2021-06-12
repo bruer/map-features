@@ -34,11 +34,7 @@ function App() {
         setError={setError}
         handleSubmit={handleSubmit}
       />
-      <Map
-        boundingBox={boundingBox}
-        features={geoJsonFeatures}
-        setError={setError}
-      />
+      <Map boundingBox={boundingBox} features={geoJsonFeatures} />
       <Message isLoading={isLoading} error={error} setError={setError} />
     </div>
   );

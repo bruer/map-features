@@ -38,7 +38,9 @@ function BoundingBoxForm({
         onClick={toggleInput}
         style={{ transform: `${hideInput ? "rotate(180deg)" : ""}` }}
       >
-        &uArr;
+        {/* &uArr; */}
+        &#x022CF;
+        {/* &darr; */}
       </button>
     </div>
   );
