@@ -1,20 +1,29 @@
 header {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.title h3 {
-  margin: 0;
+  justify-content: center;
+  align-items: flex-start;
+  /* border-bottom: solid 1px #bdbdbd; */
+  padding-bottom: 0.25rem;
 }
 
 ul {
   padding: 0;
+  margin: 0;
   list-style: none;
 }
 
 li {
   margin: 0.5em 0;
+}
+
+.title {
+  font-size: 1.25rem;
+  margin: 0;
+}
+
+.subtitle {
+  margin: 0;
+  /* margin-left: .25rem; */
 }
 
 .contact fieldset {
@@ -33,9 +42,16 @@ li {
   margin: 0.25em;
   padding: 0.5em;
   border-radius: 0.5em;
-  background: #9c27b07a;
+  /* background: #9c27b07a; */
   text-align: center;
   overflow: auto;
+}
+
+.details-list span {
+  margin-left: 10px;
+  border: solid 1px;
+  padding: 0px 5px;
+  border-radius: 50%;
 }
 
 .leaflet-container .website-link {

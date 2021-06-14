@@ -6,8 +6,8 @@ function PopupHeader({ properties }) {
 
   return (
     <header>
-      <div className="title">
-        {name && <h3>{name}</h3>}
+      <div>
+        {name && <h1 className="title">{name}</h1>}
         <PopupSubtitle properties={properties} />
       </div>
       {website && (

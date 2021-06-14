@@ -1,90 +1,34 @@
 import React from "react";
+import { capitalizeString } from "../../../api/auxiliary";
 
-function PopupSubtitle({
-  properties: {
-    amenity,
-    tourism,
-    shop,
-    railway,
-    station,
-    leisure,
-    highway,
-    office,
-    place,
-    historic,
-    "addr:housename": housename,
-  },
-}) {
+function PopupSubtitle({ properties }) {
+  console.log(properties);
+  const values = [
+    properties.amenity,
+    properties.tourism,
+    properties.shop,
+    properties.railway,
+    properties.station,
+    properties.leisure,
+    properties.highway,
+    properties.office,
+    properties.place,
+    properties.historic,
+  ];
 
   return (
-    <div>
-      {housename && (
-        <>
-          <small>{housename}</small>
-          <br />
-        </>
+    <ul>
+      {values.map(
+        (value, index) =>
+          value && (
+            <li key={index} className="subtitle">
+              <em>{capitalizeString(value)}</em>
+              {/* <small>{format(value)}</small> */}
+              {/* <em>{value.replace("_", " ")}</em> */}
+            </li>
+          )
       )}
-      {amenity && (
-        <>
-          <small>{amenity}</small>
-          <br />
-        </>
-      )}
-      {tourism && (
-        <>
-          <small>{tourism}</small>
-          <br />
-        </>
-      )}
-      {shop && (
-        <>
-          <small>{shop}</small>
-          <br />
-        </>
-      )}
-      {station && (
-        <>
-          <small>{station}</small>
-          <br />
-        </>
-      )}
-      {railway && (
-        <>
-          <small>{railway}</small>
-          <br />
-        </>
-      )}
-      {leisure && (
-        <>
-          <small>{leisure}</small>
-          <br />
-        </>
-      )}
-      {highway && (
-        <>
-          <small>{highway}</small>
-          <br />
-        </>
-      )}
-      {office && (
-        <>
-          <small>{office}</small>
-          <br />
-        </>
-      )}
-      {place && (
-        <>
-          <small>{place}</small>
-          <br />
-        </>
-      )}
-      {historic && (
-        <>
-          <small>{historic}</small>
-          <br />
-        </>
-      )}
-    </div>
+    </ul>
   );
 }
 

@@ -10,6 +10,7 @@ function PopupContact({ properties }) {
     "addr:city": city,
     "addr:postcode": postcode,
     "addr:country": country,
+    "addr:housename": housename,
   } = properties;
 
   return (
@@ -20,6 +21,11 @@ function PopupContact({ properties }) {
             <legend>Address</legend>
             <address>
               <ul>
+                {housename && (
+                  <li>
+                    <strong>{housename}</strong>
+                  </li>
+                )}
                 {street && (
                   <li>
                     {street}

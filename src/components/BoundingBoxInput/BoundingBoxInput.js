@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { getGeoJsonFeatures, getOsmData, selectLocation } from "../../api";
 import BoundingBoxForm from "./BoundingBoxForm";
 
 function BoundingBoxInput({
@@ -9,58 +8,31 @@ function BoundingBoxInput({
   setError,
   handleSubmit,
 }) {
-  const [filterFeatures, setFilter] = useState(false);
-  const [location, setLocation] = useState("");
-
-  function handleInput({ target: { type, name, value, checked } }) {
-    if (type.includes("checkbox")) {
-      setFilter(checked);
-    }
-    if (type.includes("number")) {
-      setCoordinates({ ...coordinates, [name]: value });
-    }
-    if (type.includes("select")) {
-      setLocation(value);
-      setCoordinates(selectLocation(value));
-    }
-  }
-
-  function submit(event) {
-    event.preventDefault();
-
-    setLoading(true);
-    setError("");
-    handleSubmit(null);
-
-    getOsmData(coordinates)
-      .then((osmData) => {
-        const features = getGeoJsonFeatures(osmData, filterFeatures);
-
-        setLoading(false);
-        setError("");
-        handleSubmit(features);
-      })
-      .catch((error) => {
-        setLoading(false);
-        const { name, message } = error;
-
-        if (name) {
-          console.error(error);
-          setError(name === "Error" ? message : "something went wrong");
-        } else {
-          error.text().then((message) => setError(message));
-        }
-      });
-  }
+  const [hideInput, setToogle] = useState(false);
+  const toggleInput = () => setToogle(!hideInput);
 
   return (
-    <BoundingBoxForm
-      input={handleInput}
-      submit={submit}
-      coordinates={coordinates}
-      filterChecked={filterFeatures}
-      location={location}
-    />
+    <div
+      className="input-container"
+      style={
+        hideInput ? { transform: "translateY(-100%)" } : { transform: "none" }
+      }
+    >
+      <BoundingBoxForm
+        coordinates={coordinates}
+        setCoordinates={setCoordinates}
+        setLoading={setLoading}
+        setError={setError}
+        handleSubmit={handleSubmit}
+      />
+      <button
+        className="toggle-button"
+        onClick={toggleInput}
+        style={{ transform: `${hideInput ? "rotate(180deg)" : ""}` }}
+      >
+        &#x022CF;
+      </button>
+    </div>
   );
 }
 

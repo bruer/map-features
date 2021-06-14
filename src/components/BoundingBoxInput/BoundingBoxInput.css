@@ -1,8 +1,8 @@
-/* input::-webkit-outer-spin-button,
+input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
-} */
+}
 
 form {
   display: flex;
@@ -43,7 +43,7 @@ form {
 }
 
 .coordinate-input input {
-  /* -moz-appearance: textfield; */
+  -moz-appearance: textfield;
   font-size: 1rem;
   padding: 0.5rem 0;
   border: none;

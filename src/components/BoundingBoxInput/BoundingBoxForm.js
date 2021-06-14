@@ -3,46 +3,73 @@ import { useState } from "react";
 import CoordinateInput from "./CoordinateInput";
 import FilterInput from "./FilterInput";
 import LocationInput from "./LocationInput";
+import { convertToGeoJSON, getOsmData } from "../../api/";
+import { selectLocation } from "../../api/auxiliary";
 
 function BoundingBoxForm({
   coordinates,
-  submit,
-  input,
-  filterChecked,
-  location,
+  setCoordinates,
+  setLoading,
+  setError,
+  handleSubmit,
 }) {
-  const [hideInput, setToogle] = useState(false);
-  const toggleInput = () => setToogle(!hideInput);
+  const [filterFeatures, setFilter] = useState(false);
+  const [location, setLocation] = useState("");
+
+  function handleInput({ target: { type, name, value, checked } }) {
+    if (type.includes("checkbox")) {
+      setFilter(checked);
+    }
+    if (type.includes("number")) {
+      setCoordinates({ ...coordinates, [name]: value });
+    }
+    if (type.includes("select")) {
+      setLocation(value);
+      setCoordinates(selectLocation(value));
+    }
+  }
+
+  function submit(event) {
+    event.preventDefault();
+
+    setLoading(true);
+    setError("");
+    handleSubmit(null);
+
+    getOsmData(coordinates)
+      .then((osmData) => {
+        const features = convertToGeoJSON(osmData, filterFeatures);
+
+        setLoading(false);
+        setError("");
+        handleSubmit(features);
+      })
+      .catch((error) => {
+        setLoading(false);
+        const { name, message } = error;
+
+        if (name) {
+          console.error(error);
+          setError(name === "Error" ? message : "something went wrong");
+        } else {
+          error.text().then((message) => setError(message));
+        }
+      });
+  }
 
   return (
-    <div
-      className="input-container"
-      style={
-        hideInput ? { transform: "translateY(-100%)" } : { transform: "none" }
-      }
-    >
-      <form onSubmit={submit}>
-        <CoordinateInput input={input} coordinates={coordinates} />
-        <div className="additional-input">
-          <LocationInput input={input} location={location} />
-          <FilterInput input={input} filterChecked={filterChecked} />
-        </div>
-        <input
-          className="submit-button"
-          type="submit"
-          value="Show Map Features"
-        />
-      </form>
-      <button
-        className="toggle-button"
-        onClick={toggleInput}
-        style={{ transform: `${hideInput ? "rotate(180deg)" : ""}` }}
-      >
-        {/* &uArr; */}
-        &#x022CF;
-        {/* &darr; */}
-      </button>
-    </div>
+    <form onSubmit={submit}>
+      <CoordinateInput input={handleInput} coordinates={coordinates} />
+      <div className="additional-input">
+        <LocationInput input={handleInput} location={location} />
+        <FilterInput input={handleInput} filterChecked={filterFeatures} />
+      </div>
+      <input
+        className="submit-button"
+        type="submit"
+        value="Show Map Features"
+      />
+    </form>
   );
 }
 
