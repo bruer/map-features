@@ -25,9 +25,10 @@ export function selectLocation(location) {
   }
 }
 
-export function capitalizeString(string) {
+export function formatString(string) {
   return string
     .replace("_", " ")
+    .replace(":", ": ")
     .split(" ")
     .map((word) => {
       const firstLetter = word.slice(0, 1);

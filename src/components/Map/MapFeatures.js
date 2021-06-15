@@ -4,7 +4,6 @@ import PopupHeader from "./Popup/PopupHeader";
 import PopupContact from "./Popup/PopupContact";
 import PopupDetails from "./Popup/PopupDetails";
 import GeometryLayer from "./GeometryLayer";
-import { nanoid } from "nanoid";
 
 function MapFeatures({ boundingBox, features }) {
   const map = useMap();
@@ -21,9 +20,9 @@ function MapFeatures({ boundingBox, features }) {
     <>
       {useMemo(
         () =>
-          features.map(({ properties, geometry }) => {
+          features.map(({ properties, geometry }, index) => {
             return (
-              <FeatureGroup key={nanoid()}>
+              <FeatureGroup key={index}>
                 {Object.entries(properties).length && (
                   <Popup>
                     <PopupHeader properties={properties} />

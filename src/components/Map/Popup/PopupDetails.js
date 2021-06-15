@@ -1,73 +1,44 @@
-import { nanoid } from "nanoid";
-import {
-  capitalizeString,
-  convertToWikiLink,
-  filterOutProperties,
-} from "../../../api/auxiliary";
+import { useState } from "react";
+import { filterOutProperties } from "../../../api/auxiliary";
 import { PROPERTIES } from "../../../api/constants";
+import PopupDetailsList from "./PopupDetailsList";
 
 function PopupDetails({ properties }) {
+  console.log(properties);
+  console.log(Object.entries(properties).length);
+  
   const filteredProperties = filterOutProperties(
     properties,
     PROPERTIES.STANDARD
   );
+  const [listHeight, setListHeight] = useState(0);
+  const [showDetails, setDetailsVisibility] = useState(false);
 
-  function format(name, value) {
-    if (name.includes("wikipedia") || name.includes("wikidata")) {
-      return;
-    }
-    if (value.includes("http")) {
-      return (
-        <a href={value} target="_blank" rel="noreferrer">
-          {value}
-        </a>
-      );
-    }
-    return capitalizeString(value);
-  }
+  const toggle = () => setDetailsVisibility(!showDetails);
 
   return (
     <>
       {filteredProperties.length ? (
-        <ul className="details-list">
-          {filteredProperties.map(([name, value]) => {
-            return (
-              <li key={nanoid()}>
-                <a
-                  href={convertToWikiLink(name, value)}
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  {capitalizeString(name)}
-                </a>
-                <br />
-                {typeof value === "string" ? format(name, value) : value}
-              </li>
-            );
-          })}
-        </ul>
-      ) : // <details>
-      //   <summary>Details</summary>
-      //   <ul className="details-list">
-      //     {filteredProperties.map(([name, value]) => {
-      //       console.log(name);
-      //       return (
-      //         <li key={nanoid()}>
-      //           <a
-      //             href={`https://wiki.openstreetmap.org/wiki/Key:${name}`}
-      //             target="_blank"
-      //             rel="noreferrer"
-      //           >
-      //             <strong>{name}</strong>
-      //           </a>
-      //           <br />
-      //           {value}
-      //         </li>
-      //       );
-      //     })}
-      //   </ul>
-      // </details>
-      null}
+        <>
+          <button
+            className="details-button"
+            style={showDetails ? { borderBottom: "2px solid #f44336" } : null}
+            onClick={toggle}
+          >
+            Show Details
+          </button>
+          <div
+            className="details-list-container"
+            style={showDetails ? { height: `${listHeight}px` } : null}
+          >
+            <PopupDetailsList
+              filteredProperties={filteredProperties}
+              showDetails={showDetails}
+              setListHeight={setListHeight}
+            />
+          </div>
+        </>
+      ) : null}
     </>
   );
 }

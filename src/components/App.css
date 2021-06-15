@@ -1,3 +1,7 @@
+* {
+  font-family: "Helvetica Neue", Arial, Helvetica, sans-serif;
+}
+
 .app-container {
   display: flex;
   flex-direction: column;
@@ -34,7 +38,8 @@
   transition: 500ms;
 }
 
-.toggle-button:hover, .toggle-button:focus {
+.toggle-button:hover,
+.toggle-button:focus {
   top: 2.25rem;
   background: #f44336;
   color: #fff;

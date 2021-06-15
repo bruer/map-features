@@ -72,19 +72,19 @@ form {
 }
 
 .submit-button {
-  background: #009688a8;
   border: none;
   padding: 1rem;
   font-size: 1rem;
   width: 100%;
   max-width: 25rem;
-  cursor: pointer;
+  background: #009688a8;
 }
 
 .submit-button:hover,
 .submit-button:focus {
   background: #009688;
   color: #fff;
+  cursor: pointer;
 }
 
 .fill {

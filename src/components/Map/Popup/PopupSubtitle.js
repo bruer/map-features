@@ -1,8 +1,7 @@
 import React from "react";
-import { capitalizeString } from "../../../api/auxiliary";
+import { formatString } from "../../../api/auxiliary";
 
 function PopupSubtitle({ properties }) {
-  console.log(properties);
   const values = [
     properties.amenity,
     properties.tourism,
@@ -22,7 +21,7 @@ function PopupSubtitle({ properties }) {
         (value, index) =>
           value && (
             <li key={index} className="subtitle">
-              <em>{capitalizeString(value)}</em>
+              <em>{formatString(value)}</em>
               {/* <small>{format(value)}</small> */}
               {/* <em>{value.replace("_", " ")}</em> */}
             </li>

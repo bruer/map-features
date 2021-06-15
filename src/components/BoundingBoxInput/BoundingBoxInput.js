@@ -8,15 +8,13 @@ function BoundingBoxInput({
   setError,
   handleSubmit,
 }) {
-  const [hideInput, setToogle] = useState(false);
-  const toggleInput = () => setToogle(!hideInput);
+  const [hideInput, setInputVisibility] = useState(true);
+  const toggle = () => setInputVisibility(!hideInput);
 
   return (
     <div
       className="input-container"
-      style={
-        hideInput ? { transform: "translateY(-100%)" } : { transform: "none" }
-      }
+      style={{ transform: `${hideInput ? "translateY(-100%)" : ""}` }}
     >
       <BoundingBoxForm
         coordinates={coordinates}
@@ -27,7 +25,7 @@ function BoundingBoxInput({
       />
       <button
         className="toggle-button"
-        onClick={toggleInput}
+        onClick={toggle}
         style={{ transform: `${hideInput ? "rotate(180deg)" : ""}` }}
       >
         &#x022CF;

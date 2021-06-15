@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { nanoid } from "nanoid";
 // import { Button, Modal, ModalHeader } from "reactstrap";
-import { filterProperties } from "../../../api";
 import {
   Button,
   Dialog,
@@ -9,9 +8,14 @@ import {
   DialogTitle,
   Typography,
 } from "@material-ui/core";
+import { filterOutProperties } from "../../../api/auxiliary";
+import { PROPERTIES } from "../../../api/constants";
 
 function PopupDetailsMUI({ properties }) {
-  const filteredProperties = filterProperties(properties);
+  const filteredProperties = filterOutProperties(
+    properties,
+    PROPERTIES.STANDARD
+  );
 
   const [dialogState, setDialogState] = useState(false);
   const toggleDialogState = () => {
