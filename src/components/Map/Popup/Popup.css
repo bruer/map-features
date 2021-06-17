@@ -1,24 +1,37 @@
-.leaflet-popup-content {
-  /* min-width: 12rem; */
-}
-
-header {
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  /* border-bottom: solid 1px #bdbdbd; */
-  /* padding-bottom: 0.25rem; */
-  padding: 0rem 2rem 1rem 2rem;
-}
-
 ul {
   padding: 0;
   margin: 0;
   list-style: none;
 }
 
-li {
-  margin: 0.5em 0;
+a.website-button {
+  text-decoration: none;
+  border-radius: 1rem;
+  color: #000;
+  background: #009688a8;
+  transition: 500ms;
+}
+
+a.website-button:hover,
+a.website-button:focus {
+  background: #009688;
+  color: #ffffff;
+}
+
+a.homepage {
+  padding: 0.5rem 0.75rem;
+  margin-left: 1em;
+}
+
+a.wiki {
+  padding: 0.25rem 0.5rem;
+}
+
+header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  text-align: center;
 }
 
 .title {
@@ -26,27 +39,31 @@ li {
   margin: 0;
 }
 
-.subtitle {
-  margin: 0;
-  /* margin-left: .25rem; */
+.contact fieldset,
+.details-button,
+.details-list-container {
+  border: 2px solid #f44336;
+}
+
+.contact fieldset,
+.details-button {
+  border-radius: 0.75rem;
 }
 
 .contact fieldset {
   margin: 0;
-  border: 1px solid #9c27b0;
-  border-radius: 0.5em;
+}
+
+.contact li {
+  margin: 0.25rem 0;
 }
 
 .details-button {
-  border: none;
+  background: none;
+  width: 100%;
+  margin-top: 0.25rem;
   padding: 0.25rem;
   transition: 500ms;
-  width: 100%;
-  border-top-left-radius: 12px;
-  border-top-right-radius: 12px;
-  background: none;
-  border: 2px solid #f44336;
-  border-bottom: none;
 }
 
 .details-button:hover,
@@ -58,12 +75,12 @@ li {
 
 .details-list-container {
   height: 0;
+  opacity: 0;
   overflow: hidden;
-  transition: 500ms;
+  border-top: none;
   border-bottom-left-radius: 12px;
   border-bottom-right-radius: 12px;
-  border: 2px solid #f44336;
-  border-top: none;
+  transition: 500ms, opacity 750ms;
 }
 
 .details-list {
@@ -73,38 +90,16 @@ li {
 }
 
 .details-list li {
-  margin: 0.25em;
-  padding: 0.5em;
-  border-radius: 0.5em;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   text-align: center;
-  overflow: auto;
+  overflow: hidden;
+  margin: 0.25rem;
+  padding: 0.25rem;
 }
 
-.details-list a {
+a.osm-wiki-link {
   text-decoration: none;
   color: #673ab7;
-  /* transition: 250ms; */
-}
-
-.details-list a:hover,
-.details-list a:focus {
-  /* color: #3a00a2; */
-}
-
-.leaflet-container .website-link {
-  margin-left: 1em;
-  color: #000;
-  text-decoration: none;
-}
-
-.leaflet-container .website-link {
-  padding: 0.5em;
-  border-radius: 0.75em;
-  border: 1px solid #9c27b0;
-  background: #9c27b07a;
-}
-
-.website-link:hover {
-  background: #9c27b0;
-  color: #ffffff;
 }

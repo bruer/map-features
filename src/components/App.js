@@ -7,8 +7,8 @@ import { useState } from "react";
 import BoundingBoxInput from "./BoundingBoxInput/BoundingBoxInput";
 import Map from "./Map/Map";
 import Message from "./Message/Message";
-import { convertToGeoJSON } from "../api";
-import { OSM_XML } from "../mocks/mockData";
+// import { convertToGeoJSON } from "../api";
+// import { OSM_XML } from "../mocks/mockData";
 
 function App() {
   const [geoJsonFeatures, setGeoJsonFeatures] = useState(null);
@@ -20,13 +20,13 @@ function App() {
     maxLng: "",
     maxLat: "",
   });
-  // const [boundingBox, setBoundingBox] = useState(null);
-  const [boundingBox, setBoundingBox] = useState({
-    minLng: 13.37084,
-    minLat: 59.96254,
-    maxLng: 13.39385,
-    maxLat: 59.96929,
-  });
+  const [boundingBox, setBoundingBox] = useState(null);
+  // const [boundingBox, setBoundingBox] = useState({
+  //   minLng: 13.37084,
+  //   minLat: 59.96254,
+  //   maxLng: 13.39385,
+  //   maxLat: 59.96929,
+  // });
 
   const handleSubmit = (features) => {
     setGeoJsonFeatures(features);
@@ -44,8 +44,8 @@ function App() {
       />
       <Map
         boundingBox={boundingBox}
-        // features={geoJsonFeatures}
-        features={convertToGeoJSON(OSM_XML)}
+        features={geoJsonFeatures}
+        // features={convertToGeoJSON(OSM_XML)}
       />
       <Message isLoading={isLoading} error={error} setError={setError} />
     </div>

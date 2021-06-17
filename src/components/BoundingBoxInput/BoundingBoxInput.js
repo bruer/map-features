@@ -8,7 +8,7 @@ function BoundingBoxInput({
   setError,
   handleSubmit,
 }) {
-  const [hideInput, setInputVisibility] = useState(true);
+  const [hideInput, setInputVisibility] = useState(false);
   const toggle = () => setInputVisibility(!hideInput);
 
   return (

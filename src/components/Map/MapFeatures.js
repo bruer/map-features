@@ -1,9 +1,7 @@
 import { useEffect, useMemo } from "react";
 import { FeatureGroup, useMap, Popup } from "react-leaflet";
-import PopupHeader from "./Popup/PopupHeader";
-import PopupContact from "./Popup/PopupContact";
-import PopupDetails from "./Popup/PopupDetails";
 import GeometryLayer from "./GeometryLayer";
+import PopupContainer from "./Popup/PopupContainer";
 
 function MapFeatures({ boundingBox, features }) {
   const map = useMap();
@@ -23,11 +21,9 @@ function MapFeatures({ boundingBox, features }) {
           features.map(({ properties, geometry }, index) => {
             return (
               <FeatureGroup key={index}>
-                {Object.entries(properties).length && (
+                {Object.entries(properties).length > 0 && (
                   <Popup>
-                    <PopupHeader properties={properties} />
-                    <PopupContact properties={properties} />
-                    <PopupDetails properties={properties} />
+                    <PopupContainer properties={properties} />
                   </Popup>
                 )}
                 <GeometryLayer geometry={geometry} />

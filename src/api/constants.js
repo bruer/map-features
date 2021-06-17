@@ -3,28 +3,30 @@ export const MESSAGES = {
 };
 
 export const PROPERTIES = {
-  STANDARD: [
-    "name",
-    "website",
-    "opening_hours",
-    "phone",
-    "email",
+  HEADER: [
     "amenity",
-    "tourism",
-    "shop",
-    "railway",
-    "station",
-    "leisure",
     "highway",
+    "historic",
+    "leisure",
+    "name",
     "office",
     "place",
-    "historic",
-    "addr:housename",
-    "addr:street",
-    "addr:housenumber",
+    "railway",
+    "shop",
+    "station",
+    "tourism",
+    "website",
+  ],
+  CONTACT: [
+    "email",
+    "opening_hours",
+    "phone",
     "addr:city",
-    "addr:postcode",
     "addr:country",
+    "addr:housename",
+    "addr:housenumber",
+    "addr:postcode",
+    "addr:street",
   ],
 };
 

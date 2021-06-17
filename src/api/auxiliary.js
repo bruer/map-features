@@ -1,15 +1,18 @@
 import { LOCATIONS } from "./constants";
 
-export function filterOutProperties(properties, subset) {
-  const newObject = {};
+export function filterProperties(properties, subset, excludeSubset) {
+  const filteredProperties = {};
 
   Object.entries(properties).forEach(([name, value]) => {
-    if (!subset.includes(name)) {
-      newObject[name] = value;
+    if (excludeSubset && !subset.includes(name)) {
+      filteredProperties[name] = value;
+    }
+    if (!excludeSubset && subset.includes(name)) {
+      filteredProperties[name] = value;
     }
   });
 
-  return Object.entries(newObject);
+  return filteredProperties;
 }
 
 export function selectLocation(location) {
@@ -27,8 +30,8 @@ export function selectLocation(location) {
 
 export function formatString(string) {
   return string
-    .replace("_", " ")
-    .replace(":", ": ")
+    .replaceAll("_", " ")
+    .replaceAll(":", ": ")
     .split(" ")
     .map((word) => {
       const firstLetter = word.slice(0, 1);
@@ -45,5 +48,7 @@ export function convertToWikiLink(name, value) {
   if (name.includes("wikidata")) {
     return `https://www.wikidata.org/wiki/${value}`;
   }
-  return `https://wiki.openstreetmap.org/wiki/Key:${name}`;
+  if (name.includes("wikimedia")) {
+    return `https://commons.wikimedia.org/wiki/${value}`;
+  }
 }
