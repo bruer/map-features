@@ -17,14 +17,16 @@ export function filterProperties(properties, subset, excludeSubset) {
 
 export function selectLocation(location) {
   switch (location) {
-    case "london":
-      return LOCATIONS.LONDON;
     case "huvudsta":
       return LOCATIONS.HUVUDSTA;
     case "loggolvberg":
       return LOCATIONS.LOGGOLVBERG;
+    case "london":
+      return LOCATIONS.LONDON;
+    case "stockholm":
+      return LOCATIONS.STOCKHOLM;
     default:
-      return LOCATIONS.UNKOWN;
+      return LOCATIONS.UNSET;
   }
 }
 
@@ -39,6 +41,19 @@ export function formatString(string) {
 
       return `${capitalized} `;
     });
+}
+
+export function formatCoordinate(coordinate) {
+  const parts = coordinate.toString().split(".");
+  const integer = parts[0];
+  const decimal = parts[1];
+
+  if (!decimal) {
+    console.log(decimal);
+    return parseInt(integer);
+  }
+  
+  return parseFloat(integer + "." + decimal.slice(0, 5));
 }
 
 export function convertToWikiLink(name, value) {

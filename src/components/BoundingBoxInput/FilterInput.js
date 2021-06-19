@@ -1,10 +1,14 @@
 import React from "react";
 
-function FilterInput({ input, filterChecked }) {
+function FilterInput({ filterChecked, setFilter }) {
   return (
     <label className={`filter-input ${filterChecked ? "fill" : ""}`}>
       Filter Features
-      <input type="checkbox" defaultChecked={false} onChange={input} />
+      <input
+        type="checkbox"
+        defaultChecked={false}
+        onChange={({ target: { checked } }) => setFilter(checked)}
+      />
     </label>
   );
 }

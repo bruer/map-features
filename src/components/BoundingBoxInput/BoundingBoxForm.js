@@ -1,10 +1,8 @@
-import React from "react";
 import { useState } from "react";
 import CoordinateInput from "./CoordinateInput";
 import FilterInput from "./FilterInput";
 import LocationInput from "./LocationInput";
 import { convertToGeoJSON, getOsmData } from "../../api/";
-import { selectLocation } from "../../api/auxiliary";
 
 function BoundingBoxForm({
   coordinates,
@@ -14,20 +12,6 @@ function BoundingBoxForm({
   handleSubmit,
 }) {
   const [filterFeatures, setFilter] = useState(false);
-  const [location, setLocation] = useState("");
-
-  function handleInput({ target: { type, name, value, checked } }) {
-    if (type.includes("checkbox")) {
-      setFilter(checked);
-    }
-    if (type.includes("number")) {
-      setCoordinates({ ...coordinates, [name]: value });
-    }
-    if (type.includes("select")) {
-      setLocation(value);
-      setCoordinates(selectLocation(value));
-    }
-  }
 
   function submit(event) {
     event.preventDefault();
@@ -39,6 +23,8 @@ function BoundingBoxForm({
     getOsmData(coordinates)
       .then((osmData) => {
         const features = convertToGeoJSON(osmData, filterFeatures);
+        // const features = convertToGeoJSON(osmData, filterFeatures).slice(-10);
+        // console.log(features);
 
         setLoading(false);
         setError("");
@@ -59,10 +45,16 @@ function BoundingBoxForm({
 
   return (
     <form onSubmit={submit}>
-      <CoordinateInput input={handleInput} coordinates={coordinates} />
+      <CoordinateInput
+        coordinates={coordinates}
+        setCoordinates={setCoordinates}
+      />
       <div className="additional-input">
-        <LocationInput input={handleInput} location={location} />
-        <FilterInput input={handleInput} filterChecked={filterFeatures} />
+        <LocationInput
+          coordinates={coordinates}
+          setCoordinates={setCoordinates}
+        />
+        <FilterInput filterChecked={filterFeatures} setFilter={setFilter} />
       </div>
       <input
         className="submit-button"

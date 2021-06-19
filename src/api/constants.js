@@ -31,17 +31,29 @@ export const PROPERTIES = {
 };
 
 export const LOCATIONS = {
-  UNKOWN: {
+  UNSET: {
     minLng: "",
     minLat: "",
     maxLng: "",
     maxLat: "",
   },
+  // LONDON: {
+  //   minLng: "-0.09041",
+  //   minLat: "51.51208",
+  //   maxLng: "-0.08801",
+  //   maxLat: "51.51425",
+  // },
   LONDON: {
     minLng: -0.09041,
     minLat: 51.51208,
     maxLng: -0.08801,
     maxLat: 51.51425,
+  },
+  STOCKHOLM: {
+    minLng: 18.0570,
+    minLat: 59.3175,
+    maxLng: 18.0852,
+    maxLat: 59.3318,
   },
   HUVUDSTA: {
     minLng: 17.98644,

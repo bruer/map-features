@@ -46,6 +46,7 @@ function App() {
         boundingBox={boundingBox}
         features={geoJsonFeatures}
         // features={convertToGeoJSON(OSM_XML)}
+        setCoordinates={setCoordinates}
       />
       <Message isLoading={isLoading} error={error} setError={setError} />
     </div>

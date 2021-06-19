@@ -15,12 +15,14 @@ export function convertToGeoJSON(osmData, filterFeatures) {
   let geoJson = osm2geojson(osmData).features;
 
   if (filterFeatures) {
-    geoJson = geoJson.filter(
-      (feature) => feature.properties.name !== undefined
-    );
+    geoJson = geoJson.filter((feature) => {
+      // console.log(feature)
+      return feature.properties.name !== undefined;
+    });
   }
   if (!geoJson.length) {
     throw new Error(MESSAGES.ERROR_NO_OSM_DATA);
   }
+
   return geoJson;
 }

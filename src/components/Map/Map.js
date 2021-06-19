@@ -1,7 +1,8 @@
 import { MapContainer, TileLayer, ZoomControl } from "react-leaflet";
 import MapFeatures from "./MapFeatures";
+import MapEffects from "./MapEffects";
 
-function Map({ boundingBox, features }) {
+function Map({ boundingBox, features, setCoordinates }) {
   return (
     <MapContainer
       center={[0, 0]}
@@ -12,6 +13,9 @@ function Map({ boundingBox, features }) {
       {features && (
         <MapFeatures boundingBox={boundingBox} features={features} />
       )}
+
+      <MapEffects setCoordinates={setCoordinates} />
+
       <TileLayer
         attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
