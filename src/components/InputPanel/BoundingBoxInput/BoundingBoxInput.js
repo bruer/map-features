@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { convertToGeoJSON, getOpenStreetMapData } from "../../../api";
 import { handleError, handleFeatures } from "../../../api/handlers";
 import LocationInput from "./LocationInput";
@@ -21,6 +21,27 @@ function BoundingBoxInput({
     polygons: false,
   });
   const [quantity, setQuantity] = useState("");
+
+  const filterContainerRef = useRef(null);
+  const [showFilterContainer, setFilterContainerVisibility] = useState(false);
+  const [containerStyle, setContainerStyle] = useState({});
+
+  useEffect(() => {
+    console.log(filterContainerRef.current.offsetHeight);
+    const { current: filterContainer } = filterContainerRef;
+
+    setContainerStyle(
+      showFilterContainer
+        ? {
+            height: `${filterContainer.offsetHeight}px`,
+            opacity: 1,
+          }
+        : { height: 0, opacity: 0, overflow: "hidden" }
+    );
+  }, [showFilterContainer]);
+
+  const toggleFilterContainer = () =>
+    setFilterContainerVisibility(!showFilterContainer);
 
   function submit(event) {
     event.preventDefault();
@@ -60,17 +81,26 @@ function BoundingBoxInput({
           coordinates={coordinates}
           setCoordinates={setCoordinates}
         />
+        <input
+          type="button"
+          value="filter"
+          onClick={(event) => {
+            toggleFilterContainer();
+          }}
+        />
       </div>
-      <div className="filter-input">
-        <GeometryFilter
-          filters={geometryFilters}
-          setFilters={setGeometryFilters}
-        />
-        <PropertiesFilter
-          filters={propertiesFilters}
-          setFilters={setPropertiesFilters}
-        />
-        <QuantityFilter quantity={quantity} setQuantity={setQuantity} />
+      <div className="filter-input-container" style={containerStyle}>
+        <div className="filter-input" ref={filterContainerRef}>
+          <GeometryFilter
+            filters={geometryFilters}
+            setFilters={setGeometryFilters}
+          />
+          <PropertiesFilter
+            filters={propertiesFilters}
+            setFilters={setPropertiesFilters}
+          />
+          <QuantityFilter quantity={quantity} setQuantity={setQuantity} />
+        </div>
       </div>
       <input
         className="submit-button"
