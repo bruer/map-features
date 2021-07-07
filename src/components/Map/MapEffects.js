@@ -1,5 +1,5 @@
 import { useMapEvent } from "react-leaflet";
-import { formatCoordinate } from "../../api/auxiliary";
+import { formatCoordinate } from "../../api";
 
 function MapEffects({ setCoordinates }) {
   useMapEvent("move", ({ target }) => {

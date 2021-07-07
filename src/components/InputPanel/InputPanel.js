@@ -1,7 +1,7 @@
 import { useState } from "react";
-import BoundingBoxForm from "./BoundingBoxForm";
+import BoundingBoxInput from "./BoundingBoxInput/BoundingBoxInput";
 
-function BoundingBoxInput({
+function InputPanel({
   coordinates,
   setCoordinates,
   setLoading,
@@ -13,10 +13,10 @@ function BoundingBoxInput({
 
   return (
     <div
-      className="input-container"
+      className="input-panel"
       style={{ transform: `${hideInput ? "translateY(-100%)" : ""}` }}
     >
-      <BoundingBoxForm
+      <BoundingBoxInput
         coordinates={coordinates}
         setCoordinates={setCoordinates}
         setLoading={setLoading}
@@ -34,4 +34,4 @@ function BoundingBoxInput({
   );
 }
 
-export default BoundingBoxInput;
+export default InputPanel;

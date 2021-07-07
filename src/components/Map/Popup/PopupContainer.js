@@ -1,5 +1,5 @@
-import { filterProperties } from "../../../api/auxiliary";
-import { PROPERTIES } from "../../../api/constants";
+import { filterProperties } from "../../../api/filter";
+import { PROPERTIES } from "../../../utils";
 import PopupHeader from "./PopupHeader/PopupHeader";
 import PopupContact from "./PopupContact/PopupContact";
 import PopupDetails from "./PopupDetails/PopupDetails";

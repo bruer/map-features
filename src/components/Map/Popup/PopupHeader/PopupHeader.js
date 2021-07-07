@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { filterProperties } from "../../../../api/auxiliary";
+import { filterProperties } from "../../../../api/filter";
 import PopupSubtitle from "./PopupSubtitle";
 import WebsiteButton from "../common/WebsiteButton";
 
@@ -9,17 +9,17 @@ function PopupHeader({ properties, filteredProperties }) {
 
   useEffect(() => {
     if (Object.entries(filteredProperties).length < properties.length) {
-      setStyle((headerStyle) => {
-        return { ...headerStyle, marginBottom: "0.75rem" };
+      setStyle((styles) => {
+        return { ...styles, marginBottom: "0.75rem" };
       });
     }
   }, [properties, filteredProperties]);
 
   useEffect(() => {
     if (website) {
-      setStyle((headerStyle) => {
+      setStyle((styles) => {
         return {
-          ...headerStyle,
+          ...styles,
           justifyContent: "space-between",
           textAlign: "start",
         };

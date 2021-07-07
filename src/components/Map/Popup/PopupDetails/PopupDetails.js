@@ -1,9 +1,9 @@
 import PopupDetailsToggler from "./PopupDetailsToggler";
 import PopupDetailsListItem from "./PopupDetailsListItem";
 
-function PopupDetails({ properties, filteredProperties }) {
-  const maxNumberOfProperties = 5;
+const maxNumberOfProperties = 5;
 
+function PopupDetails({ properties, filteredProperties }) {
   return (
     <>
       {filteredProperties.length > maxNumberOfProperties ||

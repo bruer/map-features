@@ -1,12 +1,7 @@
-import "./App.css";
-import "./BoundingBoxInput/BoundingBoxInput.css";
-import "./Message/Message.css";
-import "./Map/Popup/Popup.css";
-
 import { useState } from "react";
-import BoundingBoxInput from "./BoundingBoxInput/BoundingBoxInput";
-import Map from "./Map/Map";
-import Message from "./Message/Message";
+import InputPanel from "./components/InputPanel/InputPanel";
+import Map from "./components/Map/Map";
+import Message from "./components/Message/Message";
 // import { convertToGeoJSON } from "../api";
 // import { OSM_XML } from "../mocks/mockData";
 
@@ -35,7 +30,7 @@ function App() {
 
   return (
     <div className="app-container">
-      <BoundingBoxInput
+      <InputPanel
         coordinates={coordinates}
         setCoordinates={setCoordinates}
         setLoading={setLoading}

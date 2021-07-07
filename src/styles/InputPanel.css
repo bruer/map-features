@@ -1,14 +1,4 @@
-* {
-  font-family: "Helvetica Neue", Arial, Helvetica, sans-serif;
-}
-
-.app-container {
-  display: flex;
-  flex-direction: column;
-  height: 100vh;
-}
-
-.input-container {
+.input-panel {
   width: 100%;
   position: fixed;
   z-index: 1;
@@ -18,12 +8,6 @@
   background: #fff;
   opacity: 0.95;
   transition: 500ms;
-}
-
-.leaflet-container {
-  width: 100%;
-  height: 100%;
-  z-index: 0;
 }
 
 .toggle-button {
@@ -46,6 +30,22 @@
   cursor: pointer;
 }
 
-.hidden {
-  transform: rotate(180deg);
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1rem 1rem 0 1rem;
+}
+
+form * {
+  transition: 500ms;
+}
+
+.coordinate-input,
+.additional-input,
+.filter-input {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 100%;
 }

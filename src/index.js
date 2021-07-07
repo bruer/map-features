@@ -1,9 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-// import 'bootstrap/dist/css/bootstrap.min.css';
-import App from './components/App';
+import App from './App';
 import reportWebVitals from './reportWebVitals';
+
+import './index.css';
+import "./styles/App.css";
+import "./styles/InputPanel.css";
+import "./styles/Message.css";
+import "./styles/Popup.css";
+import "./styles/BoundingBoxInput.css";
 
 ReactDOM.render(
   <React.StrictMode>

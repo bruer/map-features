@@ -1,5 +1,5 @@
 import React from "react";
-import { filterProperties } from "../../../../api/auxiliary";
+import { filterProperties } from "../../../../api/filter";
 import PopupContactAddress from "./PopupContactAddress";
 import PopupContactDetails from "./PopupContactDetails";
 import PopupContactOpeningHours from "./PopupContactOpeningHours";

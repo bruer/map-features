@@ -1,0 +1,73 @@
+.input-element-container {
+  display: flex;
+  flex-direction: column;
+  margin: 0.25rem 0.5rem;
+}
+
+.input-element-container select,
+.input-element-container input,
+.input-element-container ul,
+.submit-button {
+  border-radius: 2rem;
+  border: 2px solid;
+}
+
+/* title */
+.input-element-container span {
+  font-size: 12px;
+  margin-left: 10px;
+}
+
+/* coordinate input field */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.input-element-container input {
+  -moz-appearance: textfield;
+  font-size: 1rem;
+  padding: 0.5rem 0;
+  border-color: #f44336;
+  text-align: center;
+}
+
+/* dropdown menu */
+.input-element-container select {
+  padding: 3px 6px;
+}
+
+/* checkbox menu */
+.input-element-container ul {
+  font-size: 14px;
+  display: flex;
+  padding: 2px 12px;
+}
+
+.input-element-container li {
+  margin-right: 5px;
+}
+
+.input-element-container li:last-of-type {
+  margin-right: 0;
+}
+
+/* submit button */
+.submit-button {
+  width: 100%;
+  max-width: 25rem;
+  margin-top: 28px;
+  padding: 1rem;
+  font-size: 1rem;
+  background: none;
+  color: #009688;
+  border-color: #009688;
+}
+
+.submit-button:hover,
+.submit-button:focus {
+  background: #009688;
+  color: #fff;
+  cursor: pointer;
+}

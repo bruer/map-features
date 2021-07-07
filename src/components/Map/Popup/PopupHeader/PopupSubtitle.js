@@ -1,12 +1,11 @@
 import React from "react";
-import { formatString } from "../../../../api/auxiliary";
+import { formatString } from "../../../../api";
 
 function PopupSubtitle({ properties }) {
   return (
     <ul>
       {properties.map(([, value], index) => (
         <li key={index} className="subtitle">
-          {/* <strong>{formatString(value)}</strong> */}
           {formatString(value)}
         </li>
       ))}

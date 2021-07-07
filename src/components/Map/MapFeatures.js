@@ -11,7 +11,7 @@ function MapFeatures({ boundingBox, features }) {
     const bottomLeftCorner = [minLat, minLng];
     const topRightCorner = [maxLat, maxLng];
 
-    map.fitBounds([bottomLeftCorner, topRightCorner]);
+    map.fitBounds([bottomLeftCorner, topRightCorner], { animate: false });
   }, [map, boundingBox]);
 
   return (

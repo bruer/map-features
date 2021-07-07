@@ -1,0 +1,86 @@
+.container,
+.lowContainer {
+  display: flex;
+  margin: 0.25rem 0.5rem;
+}
+
+.container {
+  flex-direction: column;
+}
+
+.lowContainer {
+  align-items: flex-end;
+  padding: 0.25rem 0.25rem 0.25rem 0.75rem;
+}
+
+.container select,
+.container input,
+.container ul,
+.lowContainer,
+.lowContainer select,
+.submitButton {
+  border-radius: 2rem;
+  border: 2px solid;
+}
+
+/* title */
+.container span {
+  font-size: 12px;
+  margin-left: 10px;
+}
+
+/* coordinate input field */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.container input {
+  -moz-appearance: textfield;
+  font-size: 1rem;
+  padding: 0.5rem 0;
+  border-color: #f44336;
+  text-align: center;
+}
+
+/* dropdown menu */
+.container select {
+  padding: 3px 6px;
+}
+
+.lowContainer select {
+  margin-left: 0.5rem;
+}
+
+/* list of checkboxes */
+.container ul {
+  font-size: 14px;
+  display: flex;
+  padding: 2px 12px;
+}
+
+.container li {
+  margin-right: 5px;
+}
+
+.container li:last-of-type {
+  margin-right: 0;
+}
+
+.submitButton {
+  width: 100%;
+  max-width: 25rem;
+  margin-top: 28px;
+  padding: 1rem;
+  font-size: 1rem;
+  background: none;
+  color: #009688;
+  border-color: #009688;
+}
+
+.submitButton:hover, .submitButton:focus {
+  background: #009688;
+  color: #fff;
+  cursor: pointer;
+}

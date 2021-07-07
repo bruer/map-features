@@ -1,21 +1,21 @@
-import { formatString, convertToWikiLink } from "../../../../api/auxiliary";
+import { formatString, convertToWikiLink } from "../../../../api";
 import WebsiteButton from "../common/WebsiteButton";
 
-function PopupDetailsListItem({ name, value }) {
-  function format(value) {
-    if (typeof value !== "string") {
-      return value;
-    }
-    if (value.includes("http")) {
-      return (
-        <a href={value} target="_blank" rel="noreferrer">
-          {value}
-        </a>
-      );
-    }
-    return formatString(value);
+function format(value) {
+  if (typeof value !== "string") {
+    return value;
   }
+  if (value.includes("http")) {
+    return (
+      <a href={value} target="_blank" rel="noreferrer">
+        {value}
+      </a>
+    );
+  }
+  return formatString(value);
+}
 
+function PopupDetailsListItem({ name, value }) {
   return (
     <li>
       {name.includes("wiki") ? (

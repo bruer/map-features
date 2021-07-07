@@ -37,12 +37,6 @@ export const LOCATIONS = {
     maxLng: "",
     maxLat: "",
   },
-  // LONDON: {
-  //   minLng: "-0.09041",
-  //   minLat: "51.51208",
-  //   maxLng: "-0.08801",
-  //   maxLat: "51.51425",
-  // },
   LONDON: {
     minLng: -0.09041,
     minLat: 51.51208,
@@ -50,7 +44,7 @@ export const LOCATIONS = {
     maxLat: 51.51425,
   },
   STOCKHOLM: {
-    minLng: 18.0570,
+    minLng: 18.057,
     minLat: 59.3175,
     maxLng: 18.0852,
     maxLat: 59.3318,
