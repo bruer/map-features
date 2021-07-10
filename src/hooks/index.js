@@ -26,3 +26,25 @@ export function useFilterStyles(filters) {
 
   return { container, title };
 }
+
+export function useVisibilityToggle(elementRef, showContainer) {
+  const [containerStyle, setContainerStyle] = useState({});
+  const { current: element } = elementRef;
+
+  useEffect(() => {
+    setContainerStyle(
+      showContainer
+        ? {
+            height: `${element.offsetHeight}px`,
+            opacity: 1,
+          }
+        : {
+            height: 0,
+            opacity: 0,
+            overflow: "hidden",
+          }
+    );
+  }, [showContainer]);
+
+  return containerStyle;
+}

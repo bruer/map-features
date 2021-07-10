@@ -4,6 +4,7 @@ import PopupDetailsListItem from "./PopupDetailsListItem";
 function PopupDetailsToggler({ properties }) {
   const listRef = useRef(null);
   const [showDetails, setDetailsVisibility] = useState(false);
+  
   const [buttonStyle, setButtonStyle] = useState(null);
   const [containerStyle, setContainerStyle] = useState(null);
 

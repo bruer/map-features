@@ -6,6 +6,7 @@ import GeometryFilter from "./filters/GeometryFilter";
 import PropertiesFilter from "./filters/PropertiesFilter";
 import QuantityFilter from "./filters/QuantityFilter";
 import CoordinateInput from "./CoordinateInput";
+import { useVisibilityToggle } from "../../../hooks";
 
 function BoundingBoxInput({
   coordinates,
@@ -24,21 +25,10 @@ function BoundingBoxInput({
 
   const filterContainerRef = useRef(null);
   const [showFilterContainer, setFilterContainerVisibility] = useState(false);
-  const [containerStyle, setContainerStyle] = useState({});
-
-  useEffect(() => {
-    console.log(filterContainerRef.current.offsetHeight);
-    const { current: filterContainer } = filterContainerRef;
-
-    setContainerStyle(
-      showFilterContainer
-        ? {
-            height: `${filterContainer.offsetHeight}px`,
-            opacity: 1,
-          }
-        : { height: 0, opacity: 0, overflow: "hidden" }
-    );
-  }, [showFilterContainer]);
+  const containerStyle = useVisibilityToggle(
+    filterContainerRef,
+    showFilterContainer
+  );
 
   const toggleFilterContainer = () =>
     setFilterContainerVisibility(!showFilterContainer);
