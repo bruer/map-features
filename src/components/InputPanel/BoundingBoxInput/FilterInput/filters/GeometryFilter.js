@@ -1,6 +1,6 @@
-import { useFilterStyles } from "../../../../hooks";
-import InputGroupContainer from "../common/InputGroupContainer";
-import InputGroupItem from "../common/InputGroupItem";
+import { useFilterStyles } from "../../../../../hooks";
+import InputGroupContainer from "../../common/InputGroupContainer";
+import InputGroupItem from "../../common/InputGroupItem";
 
 function GeometryFilter({ filters, setFilters }) {
   const styles = useFilterStyles(filters);

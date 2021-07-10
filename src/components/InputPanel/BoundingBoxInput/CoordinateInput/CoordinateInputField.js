@@ -1,4 +1,4 @@
-import InputContainer from "./common/InputContainer";
+import InputContainer from "../common/InputContainer";
 
 function CoordinateInputField({ title, name, coordinates, setCoordinates }) {
   return (

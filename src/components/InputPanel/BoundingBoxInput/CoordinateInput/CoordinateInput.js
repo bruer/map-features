@@ -2,7 +2,7 @@ import CoordinateInputField from "./CoordinateInputField";
 
 function CoordinateInput({ coordinates, setCoordinates }) {
   return (
-    <>
+    <div className="coordinate-input">
       <CoordinateInputField
         title="Minimum Longitude"
         name="minLng"
@@ -27,7 +27,7 @@ function CoordinateInput({ coordinates, setCoordinates }) {
         coordinates={coordinates}
         setCoordinates={setCoordinates}
       />
-    </>
+    </div>
   );
 }
 

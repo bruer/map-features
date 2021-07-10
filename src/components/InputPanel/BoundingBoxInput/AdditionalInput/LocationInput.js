@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
-import { selectLocation } from "../../../api";
-import { LOCATIONS } from "../../../utils";
-import InputContainer from "./common/InputContainer";
+import { selectLocation } from "../../../../api";
+import { LOCATIONS } from "../../../../utils";
+import InputContainer from "../common/InputContainer";
 
 function LocationInput({ coordinates, setCoordinates }) {
   const [titleStyle, setTitleStyle] = useState({ marginRight: "0.5rem" });

@@ -1,12 +1,9 @@
-import { useEffect, useRef, useState } from "react";
+import { useState } from "react";
 import { convertToGeoJSON, getOpenStreetMapData } from "../../../api";
 import { handleError, handleFeatures } from "../../../api/handlers";
-import LocationInput from "./LocationInput";
-import GeometryFilter from "./filters/GeometryFilter";
-import PropertiesFilter from "./filters/PropertiesFilter";
-import QuantityFilter from "./filters/QuantityFilter";
-import CoordinateInput from "./CoordinateInput";
-import { useVisibilityToggle } from "../../../hooks";
+import CoordinateInput from "./CoordinateInput/CoordinateInput";
+import AdditionalInput from "./AdditionalInput/AdditionalInput";
+import FilterInput from "./FilterInput/FilterInput";
 
 function BoundingBoxInput({
   coordinates,
@@ -22,16 +19,11 @@ function BoundingBoxInput({
     polygons: false,
   });
   const [quantity, setQuantity] = useState("");
+  const [showFilters, setFiltersVisibility] = useState(false);
 
-  const filterContainerRef = useRef(null);
-  const [showFilterContainer, setFilterContainerVisibility] = useState(false);
-  const containerStyle = useVisibilityToggle(
-    filterContainerRef,
-    showFilterContainer
-  );
-
-  const toggleFilterContainer = () =>
-    setFilterContainerVisibility(!showFilterContainer);
+  function toggleFilters() {
+    setFiltersVisibility(!showFilters);
+  }
 
   function submit(event) {
     event.preventDefault();
@@ -60,38 +52,24 @@ function BoundingBoxInput({
 
   return (
     <form onSubmit={submit}>
-      <div className="coordinate-input">
-        <CoordinateInput
-          coordinates={coordinates}
-          setCoordinates={setCoordinates}
-        />
-      </div>
-      <div className="additional-input">
-        <LocationInput
-          coordinates={coordinates}
-          setCoordinates={setCoordinates}
-        />
-        <input
-          type="button"
-          value="filter"
-          onClick={(event) => {
-            toggleFilterContainer();
-          }}
-        />
-      </div>
-      <div className="filter-input-container" style={containerStyle}>
-        <div className="filter-input" ref={filterContainerRef}>
-          <GeometryFilter
-            filters={geometryFilters}
-            setFilters={setGeometryFilters}
-          />
-          <PropertiesFilter
-            filters={propertiesFilters}
-            setFilters={setPropertiesFilters}
-          />
-          <QuantityFilter quantity={quantity} setQuantity={setQuantity} />
-        </div>
-      </div>
+      <CoordinateInput
+        coordinates={coordinates}
+        setCoordinates={setCoordinates}
+      />
+      <AdditionalInput
+        coordinates={coordinates}
+        setCoordinates={setCoordinates}
+        toggleFilters={toggleFilters}
+      />
+      <FilterInput
+        propertiesFilters={propertiesFilters}
+        geometryFilters={geometryFilters}
+        quantity={quantity}
+        showFilters={showFilters}
+        setPropertiesFilters={setPropertiesFilters}
+        setGeometryFilters={setGeometryFilters}
+        setQuantity={setQuantity}
+      />
       <input
         className="submit-button"
         type="submit"

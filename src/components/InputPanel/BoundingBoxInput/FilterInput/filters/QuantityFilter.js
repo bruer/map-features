@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import InputContainer from "../common/InputContainer";
+import InputContainer from "../../common/InputContainer";
 
 function QuantityFilter({ quantity, setQuantity }) {
   const [customStyles, setStyles] = useState({});

@@ -44,7 +44,7 @@ export function useVisibilityToggle(elementRef, showContainer) {
             overflow: "hidden",
           }
     );
-  }, [showContainer]);
+  }, [showContainer, element]);
 
   return containerStyle;
 }

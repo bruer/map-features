@@ -74,9 +74,6 @@ header {
 }
 
 .details-list-container {
-  height: 0;
-  opacity: 0;
-  overflow: hidden;
   border-top: none;
   border-bottom-left-radius: 12px;
   border-bottom-right-radius: 12px;
