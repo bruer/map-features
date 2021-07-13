@@ -2,8 +2,8 @@ import { useState } from "react";
 import InputPanel from "./components/InputPanel/InputPanel";
 import Map from "./components/Map/Map";
 import Message from "./components/Message/Message";
-// import { convertToGeoJSON } from "../api";
-// import { OSM_XML } from "../mocks/mockData";
+// import { convertToGeoJSON } from "./api";
+// import { OSM_XML } from "./mocks/mockData";
 
 function App() {
   const [geoJsonFeatures, setGeoJsonFeatures] = useState(null);
@@ -40,7 +40,7 @@ function App() {
       <Map
         boundingBox={boundingBox}
         features={geoJsonFeatures}
-        // features={convertToGeoJSON(OSM_XML)}
+        // features={convertToGeoJSON(OSM_XML).features}
         setCoordinates={setCoordinates}
       />
       <Message isLoading={isLoading} error={error} setError={setError} />

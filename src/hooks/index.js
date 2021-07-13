@@ -28,7 +28,10 @@ export function useFilterStyles(filters) {
 }
 
 export function useVisibilityToggle(elementRef, showContainer) {
-  const [containerStyle, setContainerStyle] = useState({});
+  const [containerStyle, setContainerStyle] = useState({
+    height: 0,
+    opacity: 0,
+  });
   const { current: element } = elementRef;
 
   useEffect(() => {
@@ -44,7 +47,7 @@ export function useVisibilityToggle(elementRef, showContainer) {
             overflow: "hidden",
           }
     );
-  }, [showContainer, element]);
+  }, [showContainer, initialStyles, element]);
 
   return containerStyle;
 }
