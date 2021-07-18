@@ -38,12 +38,7 @@ export function formatString(string) {
     .replaceAll("_", " ")
     .replaceAll(":", ": ")
     .split(" ")
-    .map((word) => {
-      const firstLetter = word.slice(0, 1);
-      const capitalized = word.replace(firstLetter, firstLetter.toUpperCase());
-
-      return `${capitalized} `;
-    });
+    .map((word) => word.charAt(0).toUpperCase() + word.slice(1) + " ");
 }
 
 export function selectLocation(location) {
