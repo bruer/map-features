@@ -46,19 +46,6 @@ export function formatString(string) {
     });
 }
 
-export function formatCoordinate(coordinate) {
-  const parts = coordinate.toString().split(".");
-  const integer = parts[0];
-  const decimal = parts[1];
-
-  if (!decimal) {
-    console.log(decimal);
-    return parseInt(integer);
-  }
-
-  return parseFloat(integer + "." + decimal.slice(0, 5));
-}
-
 export function selectLocation(location) {
   switch (location) {
     case "huvudsta":
