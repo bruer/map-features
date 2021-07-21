@@ -38,25 +38,7 @@ export function formatString(string) {
     .replaceAll("_", " ")
     .replaceAll(":", ": ")
     .split(" ")
-    .map((word) => {
-      const firstLetter = word.slice(0, 1);
-      const capitalized = word.replace(firstLetter, firstLetter.toUpperCase());
-
-      return `${capitalized} `;
-    });
-}
-
-export function formatCoordinate(coordinate) {
-  const parts = coordinate.toString().split(".");
-  const integer = parts[0];
-  const decimal = parts[1];
-
-  if (!decimal) {
-    console.log(decimal);
-    return parseInt(integer);
-  }
-
-  return parseFloat(integer + "." + decimal.slice(0, 5));
+    .map((word) => word.charAt(0).toUpperCase() + word.slice(1) + " ");
 }
 
 export function selectLocation(location) {
