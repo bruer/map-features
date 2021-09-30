@@ -1,7 +1,7 @@
-import { useEffect, useMemo } from "react";
-import { FeatureGroup, useMap, Popup } from "react-leaflet";
-import GeometryLayer from "./GeometryLayer";
-import PopupContainer from "./Popup/PopupContainer";
+import { useEffect, useMemo } from 'react';
+import { FeatureGroup, useMap, Popup } from 'react-leaflet';
+import GeometryLayer from './GeometryLayer';
+import PopupContainer from './Popup/PopupContainer';
 
 function MapFeatures({ boundingBox, features }) {
   const map = useMap();
